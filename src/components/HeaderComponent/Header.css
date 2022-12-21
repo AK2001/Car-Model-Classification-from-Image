@@ -1,0 +1,89 @@
+
+
+.nav-menu {
+    /*background: linear-gradient(169deg, rgba(92,24,180,1) 0%, rgba(108,30,215,1) 27%, rgba(112,41,205,1) 51%, rgba(106,11,208,1) 70%, rgba(85,8,172,1) 100%);*/
+    box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
+    -webkit-box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
+
+    background: rgb(92,24,180);
+    background: -moz-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 50%, rgba(255,255,255,1) 50%);
+    background: -webkit-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 50%, rgba(255,255,255,1) 50%);
+    background: linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 50%, rgba(255,255,255,1) 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
+}
+
+@media screen and (max-width:1024px){
+    .nav-menu{
+        background: rgb(92,24,180);
+        background: -moz-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
+        background: linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
+    }
+}
+
+#nav-brand{
+    color: orange !important;
+    font-size: 120%;
+    padding-left: 0.5rem;
+    position:relative;
+}
+
+#nav-brand:before{
+    content: "Car model classification";
+    font-weight: bold;
+    position:absolute;
+    color: rgb(255, 255, 255);
+    width:0;
+    overflow:hidden;
+    transition:all 0.6s;
+}
+
+#nav-brand:hover:before{
+    width: 100%;
+}
+
+#nav-link{
+    color: orange!important;
+    max-width: 8rem;
+    position: relative;
+}
+
+#nav-link:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 2px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+}
+
+#nav-link:hover:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+#nav-link:hover{
+    color: rgba(255, 255, 255, 0.87) !important;
+}
+
+@media screen and (max-width:575px){
+    #nav-link{
+        padding-left:0.5rem;
+        text-transform: uppercase;
+        font-style: italic;
+    }
+
+    #nav-link:after, #nav-link:hover:after{
+        all: revert;
+    }
+}
