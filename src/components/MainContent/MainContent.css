@@ -1,40 +1,15 @@
 .main-container{
     background: rgb(92,24,180);
-    background: -moz-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 52%, rgba(255,255,255,0.9) 50%);
-    background: -webkit-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 52%, rgba(255,255,255,0.9) 50%);
-    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 52%, rgba(255,255,255,0.9) 50%);
+    background: -moz-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: -webkit-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
     padding-top: 5rem;
 }
 
-@media screen and (max-width:645px){
-    .main-container{
-        background: rgb(92,24,180);
-        background: -moz-linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
-        background: -webkit-linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
-        background: linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
-    }
-
-    .model-section{
-        color: white;
-    }
-
-    .file-input-area{
-        border: 2px dashed rgb(255, 255, 255) !important
-    }
-
-    .results-container{
-        font-weight: bolder;
-    }
-}
-
-@media screen and (max-width:712px){
-
-}
-
 .welcome-section{
     color:white;
+    line-height: 1.6;
 }
 
 .welcome-section h1{
@@ -116,6 +91,11 @@
     font-weight: bolder;
 }
 
+.file-msg-mobile{
+    display: none;
+    font-weight: bolder;
+}
+
 .file-input {
     position: absolute;
     background:red;
@@ -156,9 +136,9 @@
     height: auto;;
     margin:auto;
 
-    box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.51);
-    -webkit-box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.51);
-    -moz-box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.51);
+    box-shadow: 0 0 75px -20px rgba(0,0,0,0.51);
+    -webkit-box-shadow: 0 0 75px -20px rgba(0,0,0,0.51);
+    -moz-box-shadow: 0 0 75px -20px rgba(0,0,0,0.51);
 }
 
 .upload-image{
@@ -166,9 +146,53 @@
 }
 
 .upload-image button{
-    margin: auto 1rem auto auto;
+    margin: auto;
 }
 
 .upload-image div{
-    margin: auto auto auto 1rem;
+    margin: auto;
+}
+
+.results-container{
+    color:black;
+    font-weight: bolder;
+}
+
+.results-container p{
+    margin:0;
+}
+
+
+@media screen and (max-width:767px){
+    .main-container{
+        background: rgb(92,24,180);
+        background: -moz-linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
+        background: linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
+    }
+
+    .model-section{
+        color: white;
+    }
+
+    .file-input-area{
+        border: 2px dashed rgb(255, 255, 255) !important
+    }
+
+    .file-msg{
+        display: none;
+    }
+
+    .file-msg-mobile{
+        display: block;
+    }
+
+    .file-input-section .file-btn{
+        color:white;
+    }
+}
+
+@media screen and (max-width:712px){
+
 }

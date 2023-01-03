@@ -7,18 +7,18 @@
     -moz-box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
 
     background: rgb(92,24,180);
-    background: -moz-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 50%, rgba(255,255,255,1) 50%);
-    background: -webkit-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 50%, rgba(255,255,255,1) 50%);
-    background: linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 50%, rgba(255,255,255,1) 50%);
+    background: -moz-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 48%, rgba(255,255,255,1) 48%);
+    background: -webkit-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 48%, rgba(255,255,255,1) 48%);
+    background: linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 25%, rgba(255,165,0,0.9023984593837535) 48%, rgba(255,255,255,1) 48%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
 }
 
 @media screen and (max-width:1024px){
     .nav-menu{
         background: rgb(92,24,180);
-        background: -moz-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
-        background: -webkit-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
-        background: linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
+        background: -moz-linear-gradient(150deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
+        background: -webkit-linear-gradient(150deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
+        background: linear-gradient(150deg, rgba(92,24,180,1) 5%, rgba(92,24,180,1) 50%, rgba(255,165,0,0.9023984593837535) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
     }
 }

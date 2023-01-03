@@ -15,7 +15,6 @@ function App() {
             <main className="body-main">
                 <MainContent/>
             </main>
-
         </div>
     );
 }
