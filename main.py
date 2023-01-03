@@ -1,12 +1,14 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-from ml_model import prediction
+from fastapi import FastAPI, UploadFile
+from ml_model import stupid_prediction
 from fastapi.middleware.cors import CORSMiddleware
+import PIL.Image
+import io
 
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "localhost:3000"
 ]
 
 app.add_middleware(
@@ -17,9 +19,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Home page"}
 
 
 @app.get("/hello/{name}")
@@ -27,27 +30,17 @@ async def say_hello(name: str):
     return {"message": f"Hello {name}"}
 
 
-class Image(BaseModel):
-    image: object
-    image_url: str
+@app.post("/API/userImage")
+async def create_upload_file(file: UploadFile):
+    print(file)
+    print(file.filename)
 
+    # Used to open the image locally
+    image = PIL.Image.open(io.BytesIO(file.file.read()))
+    image.show()
 
-@app.post("/image/")
-def create_image():
-    return {"prediction": "AEK",
-            "accuracyy": 69}
+    pred, acc = stupid_prediction()
+    return {"modelPrediction": pred,
+            "modelAccuracy": acc}
 
-
-@app.post("/generate")
-def generate_results(image, image_url: str):
-    print(image, image_url)
-    pred, acc = prediction(image, image_url)
-    return {"prediction": pred,
-            "accuracyy": acc}
-
-
-@app.post("/test")
-def generate_results(image):
-    print(image)
-    return {"prediction": "AEK",
-            "accuracyy": 69}
+# HELP: https://fastapi.tiangolo.com/tutorial/request-files/
