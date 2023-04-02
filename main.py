@@ -1,7 +1,8 @@
 from fastapi import FastAPI, UploadFile
-from ml_model import stupid_prediction
+from model.ml_model import stupid_prediction, model_prediction
 from fastapi.middleware.cors import CORSMiddleware
 import PIL.Image
+
 import io
 
 app = FastAPI()
@@ -25,22 +26,20 @@ async def root():
     return {"message": "Home page"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
-
-
 @app.post("/API/userImage")
 async def create_upload_file(file: UploadFile):
-    print(file)
-    print(file.filename)
 
-    # Used to open the image locally
+    # Create PIL image
     image = PIL.Image.open(io.BytesIO(file.file.read()))
-    image.show()
+    # Uncomment to show image locally
+    # image.show()
 
-    pred, acc = stupid_prediction()
+    # Get image prediction
+    pred, acc, top3_preds = model_prediction(image)
+
+    # pred, acc = stupid_prediction()
     return {"modelPrediction": pred,
-            "modelAccuracy": acc}
+            "modelAccuracy": acc,
+            "top3Predictions": top3_preds}
 
-# HELP: https://fastapi.tiangolo.com/tutorial/request-files/
+# FastApi resource for image file input: https://fastapi.tiangolo.com/tutorial/request-files/
