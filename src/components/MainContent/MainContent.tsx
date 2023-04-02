@@ -19,6 +19,7 @@ export default function MainContent() {
     const[results, setResults] = useState({
         predictedModel: "",
         accuracy: -1,
+        top3Predictions: []
     })
 
     // State to know whether input is true or false. True=user has clicked on "cancel"
@@ -30,16 +31,18 @@ export default function MainContent() {
     const imageHandler = (event: BaseSyntheticEvent) => {
         // If the input is not empty (check its files)
         if (event.target.files.length !== 0) {
+
             // Save image data, a URL and the actual object
             setImageData({
                 imageURL: URL.createObjectURL(event.target.files[0]),
                 image: event.target.files[0],
             })
 
-            // Each time a different image is selected, results are "default"
+            // Each time a different image is selected, results are changed to "default" values
             setResults({
                 predictedModel: "",
                 accuracy: -1,
+                top3Predictions: [],
             })
 
             // Change the input
@@ -73,17 +76,10 @@ export default function MainContent() {
     // Shows results to the user-makes POST request to the backend
     async function showResults() {
 
-        document.getElementById("test-btn")!.style.display = "none";
+        document.getElementById("test-btn")!.style.display = "none"; // Make "test" btn invisible
+        document.getElementById('cancelBtn')!.setAttribute("disabled","disabled"); // Disable "cancel" btn
 
         setIsLoading(true); // Show loading spinner
-
-        // const formData = new FormData();
-        // if (imageInputRef.current!.files != null){
-        //     formData.append(
-        //         "image",
-        //         imageInputRef.current!.files[0]
-        //     );
-        // }
 
         // Data (image) for Backend
         const data = {"file": imageData.image}
@@ -93,35 +89,38 @@ export default function MainContent() {
             .then(res =>{
                 setResults({
                     predictedModel: res.data.modelPrediction,
-                    accuracy: res.data.modelAccuracy,})
+                    accuracy: res.data.modelAccuracy,
+                    top3Predictions: res.data.top3Predictions,})
                 setIsLoading(false) // Hide loading spinner
+                document.getElementById('cancelBtn')!.removeAttribute("disabled"); // Enable "cancel" btn
             }).catch(err => {
                 console.log(err)
                 setIsLoading(false)
+                document.getElementById('cancelBtn')!.removeAttribute("disabled");
         })
     }
 
     return (
         <Container fluid className="main-container min-vh-100">
             <Row>
-                <Col sm={12} md={6} className="p-5">
+                <Col sm={12} md={6} className="p-4">
                     <section>
                         <div className="welcome-section">
                             <h1>Car model classification using</h1>
                             <h1>Convolutional Neural Networks.</h1>
                             <div className="project-intro pt-sm-4">
                                 <h3 className="mt-4">A project made by <a href='/#'>Alexandros Kelaiditis</a> as part of his
-                                    dissertation in Compute Science.</h3>
+                                    dissertation in Computer Science.</h3>
                                 <p>Interested in learning how it works? <a href="/#">Click here</a>.</p>
 
-                                <p className="mt-4 fs-4"> To get started simply <b>upload</b> an image of a car, <b>click</b> the button that will appear and wait
-                                    as the network tries to find the model of your Car.</p>
+                                <p className="mt-4 fs-5"> To get started simply <b>upload</b> an image of a car, <b>click</b> the button that will appear and wait
+                                    as the model tries to find the model of your Car.</p>
                             </div>
                         </div>
                     </section>
                 </Col>
 
-                <Col sm={12} md={6} className="p-5">
+                <Col sm={12} md={6} className="p-4">
                     <section>
                         <div className="model-section w-100">
                             <h1 id="heading">Try it out!</h1>
@@ -132,7 +131,7 @@ export default function MainContent() {
                                     <input className="file-input" type="file" accept="image/*"
                                            onChange={imageHandler} ref={imageInputRef} />
                                 </div>
-                                <button className="file-btn" onClick={clearImage}>Cancel</button>
+                                <button className="file-btn" id="cancelBtn" onClick={clearImage}>Cancel</button>
                             </div>
                             <div className="image-container">
                                 {isInputClear ?
@@ -144,15 +143,28 @@ export default function MainContent() {
                             {isInputClear  ?
                                 (<div></div>)
                                 :
-                                (<div className="d-inline-flex w-100 upload-image">
-                                    <Button variant="dark" onClick={showResults} id="test-btn">Test Image</Button>
-                                    {isLoading ? <LoadingSpinner/> : void(0)}
+                                (<div className="upload-image">
+                                    <div className="d-flex justify-content-center">
+                                        <Button variant="dark" onClick={showResults} id="test-btn">Test Image</Button>
+                                        {isLoading ? <LoadingSpinner/> : void(0)}
+                                    </div>
+
                                     {results.predictedModel ?
-                                        (<div className="results-container">
-                                            <h4>Results:</h4>
-                                            <p>Model: {results.predictedModel}</p>
-                                            <p>Accuracy: {results.accuracy}%</p>
-                                        </div>)
+                                        (<Row>
+                                            <Col xxl={6} className="result-container">
+                                                <h4>Model Top Prediction:</h4>
+                                                <p className="mb-0 pt-2">Model: {results.predictedModel}</p>
+                                                <p>Accuracy: {(results.accuracy*100).toFixed(2)}%</p>
+                                            </Col>
+                                            <Col xxl={6} className="result-container">
+                                                <h4 className="">Top 3 Predictions:</h4>
+                                                <ol>
+                                                {results.top3Predictions.map(function(prediction, idx){
+                                                    return (<li key={idx}>{prediction}</li>)
+                                                })}
+                                                </ol>
+                                            </Col>
+                                        </Row>)
                                     :
                                         (<div style={{display:"none"}}></div>)}
                                 </div>)

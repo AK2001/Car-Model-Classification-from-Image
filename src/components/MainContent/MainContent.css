@@ -1,8 +1,8 @@
 .main-container{
     background: rgb(92,24,180);
-    background: -moz-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
-    background: -webkit-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
-    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 25%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: -moz-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: -webkit-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.95) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
     padding-top: 5rem;
 }
@@ -14,7 +14,7 @@
 
 .welcome-section h1{
     background: linear-gradient(53deg, transparent, #fda607, darkorange, #eaa22c, transparent) no-repeat right bottom / 0 var(--bg-h);
-    transition: background-size 480ms;
+    transition: background-size 490ms;
     --bg-h: 100%;
     width: fit-content;
 }
@@ -22,6 +22,7 @@
 .welcome-section h1:where(:hover, :focus-visible) {
     background-size: 100% var(--bg-h);
     background-position-x: left;
+    font-style: italic;
 }
 
 .welcome-section a{
@@ -123,7 +124,6 @@
 
 .file-btn:hover{
     font-style: italic;
-    color: #333333;
 }
 
 .image-container{
@@ -153,13 +153,14 @@
     margin: auto;
 }
 
-.results-container{
-    color:black;
-    font-weight: bolder;
+.result-container{
+    height: 9rem;
+    font-weight: bold;
 }
 
-.results-container p{
-    margin:0;
+.result-container h4{
+    border-bottom: 1px solid black;
+    text-align: center;
 }
 
 
@@ -174,6 +175,14 @@
 
     .model-section{
         color: white;
+    }
+
+    .result-container{
+        height: 10rem;
+    }
+
+    .result-container h4{
+        border-bottom: 1px solid white;
     }
 
     .file-input-area{
@@ -191,8 +200,4 @@
     .file-input-section .file-btn{
         color:white;
     }
-}
-
-@media screen and (max-width:712px){
-
 }
