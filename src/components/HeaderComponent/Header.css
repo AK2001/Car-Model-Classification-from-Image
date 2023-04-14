@@ -76,6 +76,7 @@
     color: rgba(255, 255, 255, 0.87) !important;
 }
 
+
 @media screen and (max-width:575px){
     #nav-link{
         padding-left:0.5rem;

@@ -8,6 +8,7 @@ type MenuProps = {
 }
 
 export default function Header({title = "About"}: MenuProps) {
+
     return (
         <Navbar className="nav-menu fs-5 py-sm-3" collapseOnSelect expand="sm" fixed="top" variant="light">
             <Container fluid>
@@ -15,10 +16,11 @@ export default function Header({title = "About"}: MenuProps) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {/*Nav links*/}
-                    <Nav className="me-auto">
+                    <Nav className="me-auto ">
                         <Nav.Link id="nav-link" href="#background">Background</Nav.Link>
                         <Nav.Link id="nav-link" href="#about">{title}</Nav.Link>
                     </Nav>
+
 
                 </Navbar.Collapse>
             </Container>

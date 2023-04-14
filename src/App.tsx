@@ -5,10 +5,10 @@ import Header from "./components/HeaderComponent/Header";
 import MainContent from "./components/MainContent/MainContent";
 
 function App() {
+
     return (
         <div className="App">
             <header className="body-header">
-
                 <Header/>
             </header>
 

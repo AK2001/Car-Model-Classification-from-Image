@@ -17,47 +17,62 @@ export default function MainContent() {
 
     // State for result data
     const[results, setResults] = useState({
-        predictedModel: "",
+        modelPrediction: "",
         accuracy: -1,
         top3Predictions: []
     })
 
-    // State to know whether input is true or false. True=user has clicked on "cancel"
+    // State to know whether input is true or false. True means that user has clicked on "cancel" or no image is yet selected
     const [isInputClear, setIsInputClear] = useState(true);
 
     const imageInputRef = useRef<HTMLInputElement>(null)
 
-    // Activates each time user selects an image in the input
+    // Gets called each time user selects an image in the input
     const imageHandler = (event: BaseSyntheticEvent) => {
-        // If the input is not empty (check its files)
-        if (event.target.files.length !== 0) {
 
-            // Save image data, a URL and the actual object
-            setImageData({
-                imageURL: URL.createObjectURL(event.target.files[0]),
-                image: event.target.files[0],
-            })
+        let imgURL = "";
+        let img = null
 
-            // Each time a different image is selected, results are changed to "default" values
-            setResults({
-                predictedModel: "",
-                accuracy: -1,
-                top3Predictions: [],
-            })
+        try{
+            imgURL = event.target.src
+            img = new Image()
+            img = "../../assets/images/demo-img-2.jpg"
+        }catch (err){}
 
-            // Change the input
-            if (isInputClear) {
-                setIsInputClear(!isInputClear)
-            }
+        try{
+            imgURL = URL.createObjectURL(event.target.files[0])
+            img = event.target.files[0]
+        }catch (err){}
 
-            // Display the "test" button
-            if (document.getElementById("test-btn") != null){
-                // @ts-ignore
-                document.getElementById("test-btn").style.display = "inline";
-            }
+        // Save image data, a URL and the actual object
+        setImageData({
+            imageURL: imgURL,
+            image: img,
+        })
 
+        // Each time a different image is selected, results are changed to "default" values
+        setResults({
+            modelPrediction: "",
+            accuracy: -1,
+            top3Predictions: [],
+        })
+
+        // Change the input
+        if (isInputClear) {
+            setIsInputClear(!isInputClear)
+        }
+
+        // Display the "test" button
+        if (document.getElementById("test-btn") != null){
+            // @ts-ignore
+            document.getElementById("test-btn").style.display = "inline";
         }
     };
+
+    // Gets called each time user select one demo image
+    const demoImageHandler = (event: BaseSyntheticEvent) => {
+        console.log(event.target)
+    }
 
     // Clears image after user selects "cancel" btn
     const clearImage = () => {
@@ -73,7 +88,7 @@ export default function MainContent() {
     // State to store loading component status
     const [isLoading, setIsLoading] = useState(false);
 
-    // Shows results to the user-makes POST request to the backend
+    // Shows results to the user - makes POST request to the backend
     async function showResults() {
 
         document.getElementById("test-btn")!.style.display = "none"; // Make "test" btn invisible
@@ -85,10 +100,10 @@ export default function MainContent() {
         const data = {"file": imageData.image}
 
         // Post request
-        await axios.post("/API/userImage", data, {headers: { 'Accept': 'application/json', 'Content-Type': 'multipart/form-data'}})
+        await axios.post("/API/predictImage", data, {headers: { 'Accept': 'application/json', 'Content-Type': 'multipart/form-data'}})
             .then(res =>{
                 setResults({
-                    predictedModel: res.data.modelPrediction,
+                    modelPrediction: res.data.modelPrediction,
                     accuracy: res.data.modelAccuracy,
                     top3Predictions: res.data.top3Predictions,})
                 setIsLoading(false) // Hide loading spinner
@@ -103,9 +118,9 @@ export default function MainContent() {
     return (
         <Container fluid className="main-container min-vh-100">
             <Row>
-                <Col sm={12} md={6} className="p-4">
+                <Col sm={12} md={6} className="p-4 welcome-section">
                     <section>
-                        <div className="welcome-section">
+                        <>
                             <h1>Car model classification using</h1>
                             <h1>Convolutional Neural Networks.</h1>
                             <div className="project-intro pt-sm-4">
@@ -114,15 +129,25 @@ export default function MainContent() {
                                 <p>Interested in learning how it works? <a href="/#">Click here</a>.</p>
 
                                 <p className="mt-4 fs-5"> To get started simply <b>upload</b> an image of a car, <b>click</b> the button that will appear and wait
-                                    as the model tries to find the model of your Car.</p>
+                                    a couple of seconds as the model tries to find the model of your Car.</p>
                             </div>
-                        </div>
+
+                            <>
+                                <p className="fs-5">Need a quick demo? Try one of these images: </p>
+                                <div className="demo-images">
+                                    <img id="demo-1" src={require("../../assets/images/demo-img-1.jpg")} width={140} height={140} alt="demo image 1" onClick={imageHandler}/>
+                                    <img src={require("../../assets/images/demo-img-2.jpg")} width={140} height={140} alt="demo image 2" onClick={demoImageHandler}/>
+                                    <img src={require("../../assets/images/demo-img-3.jpg")} width={140} height={140} alt="demo image 3" onClick={demoImageHandler}/>
+                                </div>
+                            </>
+
+                        </>
                     </section>
                 </Col>
 
-                <Col sm={12} md={6} className="p-4">
+                <Col sm={12} md={6} className="p-4 model-section">
                     <section>
-                        <div className="model-section w-100">
+                        <div className="w-100">
                             <h1 id="heading">Try it out!</h1>
                             <div className="d-block w-100 file-input-section">
                                 <div className="file-input-area"> {/*<-- was form*/}
@@ -135,7 +160,7 @@ export default function MainContent() {
                             </div>
                             <div className="image-container">
                                 {isInputClear ?
-                                    (<img src={require("../../assets/images/no-image2.png")} alt="upload-car placeholder" width={280} height={280}/>)
+                                    (<img src={require("../../assets/images/no-image-placeholder.png")} alt="upload-car placeholder" width={280} height={280}/>)
                                     :
                                     (<img src={imageData.imageURL} alt="user-uploaded image" width={300} height={300}/>)
                                 }
@@ -149,11 +174,11 @@ export default function MainContent() {
                                         {isLoading ? <LoadingSpinner/> : void(0)}
                                     </div>
 
-                                    {results.predictedModel ?
+                                    {results.modelPrediction ?
                                         (<Row>
                                             <Col xxl={6} className="result-container">
                                                 <h4>Model Top Prediction:</h4>
-                                                <p className="mb-0 pt-2">Model: {results.predictedModel}</p>
+                                                <p className="mb-0 pt-2">Model: {results.modelPrediction}</p>
                                                 <p>Accuracy: {(results.accuracy*100).toFixed(2)}%</p>
                                             </Col>
                                             <Col xxl={6} className="result-container">

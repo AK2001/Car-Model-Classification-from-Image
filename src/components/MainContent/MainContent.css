@@ -39,6 +39,22 @@
     color: #fda607;
 }
 
+
+.demo-images{
+    width: 100%;
+    text-align: center;
+}
+
+.demo-images p{
+}
+
+.demo-images img{
+    max-width: 100%;
+    height: auto;
+    margin: 0 15px 15px;
+    border-radius: 5%;
+}
+
 .model-section #heading{
     margin: auto auto 1rem auto;
     width: fit-content;
@@ -92,6 +108,7 @@
     font-weight: bolder;
 }
 
+/*Message that will only appear on smaller screens (Mobile <= 767)*/
 .file-msg-mobile{
     display: none;
     font-weight: bolder;
@@ -136,9 +153,9 @@
     height: auto;;
     margin:auto;
 
-    box-shadow: 0 0 75px -20px rgba(0,0,0,0.51);
-    -webkit-box-shadow: 0 0 75px -20px rgba(0,0,0,0.51);
-    -moz-box-shadow: 0 0 75px -20px rgba(0,0,0,0.51);
+    box-shadow: 0 0 75px 0 rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 0 75px 0 rgba(0,0,0,0.7);
+    -moz-box-shadow: 0 0 75px 0 rgba(0,0,0,0.7);
 }
 
 .upload-image{
@@ -156,6 +173,7 @@
 .result-container{
     height: 9rem;
     font-weight: bold;
+    padding-top: 10px;
 }
 
 .result-container h4{
@@ -166,27 +184,19 @@
 
 @media screen and (max-width:767px){
     .main-container{
-        background: rgb(92,24,180);
-        background: -moz-linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
-        background: -webkit-linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
-        background: linear-gradient(180deg, rgba(92,24,180,1) 0%, rgba(92,24,180,0.8) 26%, rgba(255,165,0,0.85) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
+        background: rgba(92,24,180,1);
+    }
+
+    .welcome-section{
+        background: linear-gradient(270deg, rgba(92,24,180,1) 0%, rgba(92,24,180, 1) 30%, rgba(255,165,0,1) 90%, rgb(255, 255, 255, 1) 100%);
+        background: -moz-linear-gradient(270deg, rgba(92,24,180,1) 0%, rgba(92,24,180, 1) 30%, rgba(255,165,0,1) 90%, rgb(255, 255, 255, 1) 100%);
+        background: -webkit-linear-gradient(270deg, rgba(92,24,180,1) 0%, rgba(92,24,180, 1) 30%, rgba(255,165,0,1) 90%, rgb(255, 255, 255, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
     }
 
     .model-section{
-        color: white;
-    }
-
-    .result-container{
-        height: 10rem;
-    }
-
-    .result-container h4{
-        border-bottom: 1px solid white;
-    }
-
-    .file-input-area{
-        border: 2px dashed rgb(255, 255, 255) !important
+        background: white;
+        color: black;
     }
 
     .file-msg{
@@ -197,7 +207,8 @@
         display: block;
     }
 
-    .file-input-section .file-btn{
-        color:white;
+    .result-container{
+        height: 10rem;
     }
+
 }
