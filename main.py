@@ -1,5 +1,5 @@
 from fastapi import FastAPI, UploadFile
-from model.ml_model import stupid_prediction, model_prediction
+from model.ml_model import model_prediction, get_class_names
 from fastapi.middleware.cors import CORSMiddleware
 import PIL.Image
 
@@ -21,17 +21,18 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-async def root():
-    return {"message": "Home page"}
+@app.get("/API/getClasses")
+async def get_dataset_class_names():
+    return get_class_names()
 
 
-@app.post("/API/userImage")
-async def create_upload_file(file: UploadFile):
+@app.post("/API/predictImage")
+async def predict_image_with_model(file: UploadFile):
 
     # Create PIL image
     image = PIL.Image.open(io.BytesIO(file.file.read()))
-    # Uncomment to show image locally
+
+    # Uncomment to open image locally
     # image.show()
 
     # Get image prediction

@@ -1,15 +1,12 @@
-import random
-import time
-
 import torch
 from torchvision import models
 from torchvision import transforms
 from PIL import Image
 from pathlib import Path
-from typing import List, Tuple
+from typing import Tuple
 
 carList = ["Nissan", "Mitsubishi", "Chevrolet", "Subaru", "Mazda", "Ford"]
-MODEL_PATH = Path("model/model_dict/pytorch_model_kaggle_test_90")
+MODEL_PATH = Path("model/model_dict/pytorch_model_ResNet34")
 
 CLASS_NAMES = ['AM General Hummer SUV 2000',
                'Acura RL Sedan 2012',
@@ -210,6 +207,8 @@ CLASS_NAMES = ['AM General Hummer SUV 2000',
 
 
 def create_model():
+    """ Creates an instance of the required PyTorch model and modifies it according to specific changes """
+
     model = models.resnet34(weights=models.ResNet34_Weights.DEFAULT)
     num_ftrs = model.fc.in_features
     model.fc = torch.nn.Linear(num_ftrs, 196)
@@ -218,6 +217,8 @@ def create_model():
 
 
 def load_model():
+    """ Loads the Pre-trained state_dict of a PyTorch model """
+
     model = create_model()
     model.load_state_dict(torch.load(MODEL_PATH))
 
@@ -227,11 +228,43 @@ def load_model():
 # Takes in a trained model, class names, image path, image size, a transform and target device
 def pred_image(model: torch.nn.Module,
                image: Image,
-               class_names: List[str] = CLASS_NAMES,
-               image_size: Tuple[int, int] = (224, 224),
+               class_names=None,
+               image_size: Tuple[int, int] = (400, 400),
                transform: transforms = None,
                device: torch.device = "cuda"):
+    """Uses a PyTorch model to make a prediction on a given image.
+
+      Passes a given image through a given model's forward function.
+      The image is first transformed to the model's specific image transforms
+
+      Args:
+        model: A PyTorch model to be trained and tested.
+        image: A PIL image.
+        class_names: The list of all class names in our dataset (In our case 196 classes).
+        image_size: The image size that we want the image to be resized to.
+        (By default, the model was trained and tested on 400x400 images)
+
+        transform: A PyTorch transform for images (By default is None, we use the transforms the model
+        was trained and tested on).
+        device: A target device to compute on (e.g. "cuda" or "cpu", "cuda" is by default).
+
+      Returns:
+        A List containing the model's top1 prediction alongside its prediction accuracy,
+        and a list that has the class labels of the model's top3 predictions on the image.
+
+        In the form: [Top1 prediction class, Top1 prediction accuracy, [Top3 pred labels]]
+
+        For example, given an image of a: BMW 6 Series Convertible 2007
+                     [BMW 6 Series Convertible 2007, 99.53032,
+                            [BMW 6 Series Convertible 2007,
+                             BMW M6 Convertible 2010,
+                             Chrysler Sebring Convertible 2010]]
+    """
+
     # Create transformation for image (if one doesn't exist)
+    if class_names is None:
+        class_names = CLASS_NAMES
+
     if transform is not None:
         image_transform = transform
     else:
@@ -254,10 +287,10 @@ def pred_image(model: torch.nn.Module,
     # Convert logits to prediction probabilities (using torch.softmax() for multi-class classification)
     target_image_pred_probs = torch.softmax(target_image_pred, dim=1)
 
-    # Convert prediction probabilities to prediction labels
+    # Finds the index of the highest probability value (Top1 pred)
     target_image_pred_label = torch.argmax(target_image_pred_probs, dim=1)
 
-    # Find top 3 predictions and get their indices
+    # Finds the indices of the top 3 predictions
     top3_preds = torch.topk(target_image_pred_probs, k=3, dim=1).indices
 
     # Convert top 3 predictions from tensor to list
@@ -268,18 +301,22 @@ def pred_image(model: torch.nn.Module,
     for pred in top3_preds:
         top3_class_preds.append(class_names[pred])
 
+    # Shows top1 accuracy
     # print(f"Pred: {class_names[target_image_pred_label]} | Prob: {target_image_pred_probs.max():.3f}")
 
+    # Returns the Top1 prediction (Class name predicted and probability), and the Top3 prediction labels
     return class_names[target_image_pred_label], target_image_pred_probs.max().item(), top3_class_preds
 
 
 def model_prediction(image: Image):
+    """ Loads a specified PyTorch model and calls pred_image() method on a given image for that model """
+
     model = load_model()
     predicted_model, prediction_acc, top3 = pred_image(model=model, image=image)
 
     return predicted_model, prediction_acc, top3
 
 
-def stupid_prediction():
-    time.sleep(2)
-    return random.choice(carList), random.randint(50, 100)
+def get_class_names():
+    """ Returns the list of available class names"""
+    return CLASS_NAMES
