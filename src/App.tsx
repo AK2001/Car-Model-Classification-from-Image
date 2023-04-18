@@ -3,6 +3,8 @@ import './App.css';
 import './components/HeaderComponent/Header';
 import Header from "./components/HeaderComponent/Header";
 import MainContent from "./components/MainContent/MainContent";
+import BackgroundPage from "./components/BackgroundPage/BackgroundPage";
+import {Routes, Route} from "react-router-dom";
 
 function App() {
 
@@ -13,7 +15,17 @@ function App() {
             </header>
 
             <main className="body-main">
-                <MainContent/>
+                <Routes>
+                    <Route path="/" element={
+                        <MainContent/>
+                    }>
+                    </Route>
+
+                    <Route path="/background" element={
+                        <BackgroundPage/>
+                    }>
+                    </Route>
+                </Routes>
             </main>
         </div>
     );

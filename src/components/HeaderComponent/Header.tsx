@@ -17,7 +17,7 @@ export default function Header({title = "About"}: MenuProps) {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {/*Nav links*/}
                     <Nav className="me-auto ">
-                        <Nav.Link id="nav-link" href="#background">Background</Nav.Link>
+                        <Nav.Link id="nav-link" href="/background">Background</Nav.Link>
                         <Nav.Link id="nav-link" href="#about">{title}</Nav.Link>
                     </Nav>
 

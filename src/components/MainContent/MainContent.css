@@ -2,7 +2,7 @@
     background: rgb(92,24,180);
     background: -moz-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
     background: -webkit-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
-    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.95) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
     padding-top: 5rem;
 }
@@ -39,20 +39,28 @@
     color: #fda607;
 }
 
-
 .demo-images{
     width: 100%;
     text-align: center;
 }
 
-.demo-images p{
-}
-
 .demo-images img{
     max-width: 100%;
     height: auto;
-    margin: 0 15px 15px;
+    margin: 0 17px 17px;
     border-radius: 5%;
+
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
+    -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
+    -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
+}
+
+.demo-images img:hover{
+    cursor: pointer;
+
+    box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
+    -webkit-box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
+    -moz-box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
 }
 
 .model-section #heading{
@@ -153,9 +161,9 @@
     height: auto;;
     margin:auto;
 
-    box-shadow: 0 0 75px 0 rgba(0,0,0,0.7);
-    -webkit-box-shadow: 0 0 75px 0 rgba(0,0,0,0.7);
-    -moz-box-shadow: 0 0 75px 0 rgba(0,0,0,0.7);
+    box-shadow: 0 0 40px 1px rgba(0,0,0,0.60);
+    -webkit-box-shadow: 0 0 40px 1px rgba(0,0,0,0.60);
+    -moz-box-shadow: 0 0 40px 1px rgba(0,0,0,0.60);
 }
 
 .upload-image{
@@ -181,6 +189,16 @@
     text-align: center;
 }
 
+.error-message{
+    padding-top:1rem;
+    text-align: center;
+    font-weight: bolder;
+    line-height: normal;
+}
+
+.error-message a:link, a:active,a:hover{
+    color: rgba(92,24,180,1);
+}
 
 @media screen and (max-width:767px){
     .main-container{
