@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Tuple
 
 carList = ["Nissan", "Mitsubishi", "Chevrolet", "Subaru", "Mazda", "Ford"]
-MODEL_PATH = Path("model/model_dict/pytorch_model_ResNet34")
+MODEL_PATH = Path("app/model/model_dict/pytorch_model_ResNet34")
 
 CLASS_NAMES = ['AM General Hummer SUV 2000',
                'Acura RL Sedan 2012',
