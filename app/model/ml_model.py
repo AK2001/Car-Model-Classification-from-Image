@@ -281,6 +281,12 @@ def pred_image(model: torch.nn.Module,
         # Transform and add an extra dimension to image (model requires samples in [batch_size, color_channels, height, width])
         transformed_image = image_transform(image).unsqueeze(dim=0)
 
+        # Show transformed Image
+        # transform_to_tensor = transforms.ToPILImage()
+        # show_transformed = transformed_image.squeeze(dim=0)
+        # show_transformed = transform_to_tensor(show_transformed)
+        # show_transformed.show()
+
         # Make a prediction on image with an extra dimension and send it to the target device
         target_image_pred = model(transformed_image.to(device))
 
