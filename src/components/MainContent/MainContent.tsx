@@ -151,28 +151,29 @@ export default function MainContent() {
     return (
         <Container fluid className="main-container min-vh-100">
             <Row>
-                <Col sm={12} md={6} className="p-4 welcome-section">
+                <Col sm={12} md={6} className="welcome-section p-4">
                     <section>
                         <>
-                            <h1>Car model classification using</h1>
-                            <h1>Convolutional Neural Networks.</h1>
-                            <div className="project-intro pt-sm-4">
-                                <h3 className="mt-4">A project made by <a href='/#'>Alexandros Kelaiditis</a> as part of his
+                            <h1>
+                                <span className="bg-hover-animation">Car model classification using <br/> Convolutional Neural Networks.</span>
+                            </h1>
+                            <div className="pt-2">
+                                <h3 className="mt-2">A project made by <a href='/#'>Alexandros Kelaiditis</a> as part of his
                                     dissertation in Computer Science.</h3>
-                                <p>Interested in learning how it works? <a href="/#">Learn more here</a>.</p>
+                                <p>Interested in learning how it works? <a href="/background">Learn more here</a>.</p>
 
-                                <p className="mt-4 fs-5"> To get started, simply <b>upload</b> an image of a car, <b>click</b> on the button that appears below and wait
+                                <p className="mt-4 fs-5"><span className="emp-text">To get started</span>, simply <b>upload</b> an image of a car, <b>click</b> on the button that appears below and wait
                                     as the Network tries to classify the car's model.</p>
                                 <p className="mt-4 fs-5"> Please <u>note</u> that the Network can only classify <b>196</b> different car models. To view the
                                     entire list of models, <a href="/background">click here</a>.</p>
                             </div>
 
                             <>
-                                <p className="fs-5">Need a quick demo? Try one of these sample images: </p>
+                                <p className="fs-5 mb-2">Need a quick demo? Try one of these sample images: </p>
                                 <div className="demo-images">
-                                    <img className="demo-image mb-0" id="demo-img-1" src={require("../../assets/images/demo-img-1.jpg")} width={140} height={140} alt="demo image 1" onClick={imageHandler}/>
-                                    <img className="demo-image mb-0" id="demo-img-2" src={require("../../assets/images/demo-img-2.jpg")} width={140} height={140} alt="demo image 2" onClick={imageHandler}/>
-                                    <img className="demo-image mb-0" id="demo-img-3" src={require("../../assets/images/demo-img-3.jpg")} width={140} height={140} alt="demo image 3" onClick={imageHandler}/>
+                                    <img className="demo-image mb-0" id="demo-img-1" src={require("../../assets/images/demo-img-1.jpg")} width={160} height={160} alt="demo car 1" onClick={imageHandler}/>
+                                    <img className="demo-image mb-0" id="demo-img-2" src={require("../../assets/images/demo-img-2.jpg")} width={160} height={160} alt="demo car 2" onClick={imageHandler}/>
+                                    <img className="demo-image mb-0" id="demo-img-3" src={require("../../assets/images/demo-img-3.jpg")} width={160} height={160} alt="demo car 3" onClick={imageHandler}/>
                                 </div>
                             </>
 
@@ -180,10 +181,10 @@ export default function MainContent() {
                     </section>
                 </Col>
 
-                <Col sm={12} md={6} className="p-4 model-section">
+                <Col sm={12} md={6} className="p-4 model-section ">
                     <section>
                         <div className="w-100">
-                            <h1 id="heading">Try it out!</h1>
+                            <h1 className="heading">Try it out!</h1>
                             <div className="d-block w-100 file-input-section">
                                 <div id="user-input" className="file-input-area"> {/*<-- was form*/}
                                     <span className="file-msg">Drag & Drop to upload image or <u>click here</u>.</span>
@@ -197,7 +198,7 @@ export default function MainContent() {
                                 {isInputClear ?
                                     (<img src={require("../../assets/images/no-image-placeholder.png")} alt="upload-car placeholder" width={280} height={280}/>)
                                     :
-                                    (<img src={imageData.imageURL} alt="user-uploaded image" width={300} height={300}/>)
+                                    (<img src={imageData.imageURL} alt="user uploaded car" width={300} height={300}/>)
                                 }
                             </div>
                             {isInputClear  ?
@@ -217,21 +218,21 @@ export default function MainContent() {
                                                 <p>Accuracy: {(results.accuracy*100).toFixed(2)}%</p>
                                             </Col>
                                             <Col xxl={6} className="result-container">
-                                                <h4 className="">Top 3 Predictions:</h4>
+                                                <h4>Top 3 Predictions:</h4>
                                                 <ol>
-                                                {results.top3Predictions.map(function(prediction, idx){
-                                                    return (<li key={idx}>{prediction}</li>)
-                                                })}
+                                                    {results.top3Predictions.map(function(prediction, idx){
+                                                        return (<li key={idx}>{prediction}</li>)
+                                                    })}
                                                 </ol>
                                             </Col>
                                         </Row>)
-                                    :
+                                        :
                                         errorOccurredDuringImageUpload ?
                                             (<div className="error-message">
                                                 <p className="">Oops...Looks like something went wrong.</p>
                                                 <p className="">If you keep encountering the same error, feel free to <a href="mailto:al.kelaiditis@gmail.com">contact me</a>.</p>
                                             </div>)
-                                        :
+                                            :
                                             (<></>)
 
                                     }

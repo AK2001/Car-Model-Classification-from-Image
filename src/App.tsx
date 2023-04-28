@@ -16,8 +16,11 @@ function App() {
 
             <main className="body-main">
                 <Routes>
+
                     <Route path="/" element={
-                        <MainContent/>
+                        <>
+                            <MainContent/>
+                        </>
                     }>
                     </Route>
 

@@ -2,6 +2,8 @@ import './Header.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import LinkToGithub from "../LinkToGithubButton/LinkToGithub";
+import React from "react";
 
 type MenuProps = {
     title?: string;
@@ -21,6 +23,9 @@ export default function Header({title = "About"}: MenuProps) {
                         <Nav.Link id="nav-link" href="#about">{title}</Nav.Link>
                     </Nav>
 
+                    <Nav.Link href="/#">
+                        <LinkToGithub/>
+                    </Nav.Link>
 
                 </Navbar.Collapse>
             </Container>

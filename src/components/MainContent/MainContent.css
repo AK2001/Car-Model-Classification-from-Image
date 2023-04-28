@@ -1,25 +1,27 @@
 .main-container{
     background: rgb(92,24,180);
-    background: -moz-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
-    background: -webkit-linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
-    background: linear-gradient(90deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.85) 26%, rgba(255,165,0,0.9) 50%, rgba(255,255,255,0.9) 50%);
+    background: -moz-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
+    background: -webkit-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
+    background: linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
+
     padding-top: 5rem;
 }
 
 .welcome-section{
     color:white;
     line-height: 1.6;
+    min-height: 91.5vh;
 }
 
-.welcome-section h1{
-    background: linear-gradient(53deg, transparent, #fda607, darkorange, #eaa22c, transparent) no-repeat right bottom / 0 var(--bg-h);
+.welcome-section .bg-hover-animation{
+    background: linear-gradient(53deg, transparent, var(--orange-1), darkorange, var(--orange-1), transparent) no-repeat right bottom / 0 var(--bg-h);
     transition: background-size 490ms;
     --bg-h: 100%;
     width: fit-content;
 }
 
-.welcome-section h1:where(:hover, :focus-visible) {
+.welcome-section .bg-hover-animation:where(:hover, :focus-visible) {
     background-size: 100% var(--bg-h);
     background-position-x: left;
     font-style: italic;
@@ -30,13 +32,22 @@
 }
 
 .welcome-section a:link a:active, a:visited{
-    color: #fda607;
+    color: var(--orange-1);
 }
 
 .welcome-section a:hover{
     font-weight: bolder;
     font-style: italic;
-    color: #fda607;
+    color: var(--orange-1);
+}
+
+.emp-text{
+    font-weight: bolder;
+    color: var(--orange-1);
+}
+
+.emp-text:hover{
+    text-decoration: underline;
 }
 
 .demo-images{
@@ -44,10 +55,10 @@
     text-align: center;
 }
 
-.demo-images img{
+.demo-images .demo-image{
     max-width: 100%;
     height: auto;
-    margin: 0 17px 17px;
+    margin: 10px 17px 17px;
     border-radius: 5%;
 
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
@@ -55,7 +66,7 @@
     -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
 }
 
-.demo-images img:hover{
+.demo-images .demo-image:hover{
     cursor: pointer;
 
     box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
@@ -63,13 +74,19 @@
     -moz-box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
 }
 
-.model-section #heading{
+/*Blur all images except the one the user hovers*/
+/*.demo-images:hover .demo-image:not( :hover ){*/
+/*    filter: blur(1px);*/
+/*    -webkit-filter: blur(1px);*/
+/*}*/
+
+.heading{
     margin: auto auto 1rem auto;
     width: fit-content;
     position: relative;
 }
 
-.model-section #heading:after {
+.heading:after {
     content: '';
     position: absolute;
     left: 0;
@@ -85,14 +102,14 @@
     transform: scale(0,1);
 }
 
-.model-section #heading:hover:after {
+.heading:hover:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
 }
 
-.model-section #heading:hover{
-    color: rgba(92,24,180) !important;
+.heading:hover{
+    color: var(--purple-1) !important;
 }
 
 .file-input-area{
@@ -124,7 +141,6 @@
 
 .file-input {
     position: absolute;
-    background:red;
     height: 100%;
     width: 100%;
     left: 0;
@@ -179,9 +195,9 @@
 }
 
 .result-container{
-    height: 9rem;
     font-weight: bold;
     padding-top: 10px;
+    margin-top:0!important;
 }
 
 .result-container h4{
@@ -197,7 +213,7 @@
 }
 
 .error-message a:link, a:active,a:hover{
-    color: rgba(92,24,180,1);
+    color: var(--purple-1);
 }
 
 @media screen and (max-width:767px){
@@ -206,15 +222,19 @@
     }
 
     .welcome-section{
-        background: linear-gradient(270deg, rgba(92,24,180,1) 0%, rgba(92,24,180, 1) 30%, rgba(255,165,0,1) 90%, rgb(255, 255, 255, 1) 100%);
-        background: -moz-linear-gradient(270deg, rgba(92,24,180,1) 0%, rgba(92,24,180, 1) 30%, rgba(255,165,0,1) 90%, rgb(255, 255, 255, 1) 100%);
-        background: -webkit-linear-gradient(270deg, rgba(92,24,180,1) 0%, rgba(92,24,180, 1) 30%, rgba(255,165,0,1) 90%, rgb(255, 255, 255, 1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
+        background: -moz-radial-gradient(circle, rgba(91,15,189,1) 0%, var(--purple-1) 100%);
+        background: -webkit-radial-gradient(circle, rgba(91,15,189,1) 0%, var(--purple-1) 100%);
+        background: radial-gradient(circle, rgba(91,15,189,1) 0%, var(--purple-1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5b0fbd",endColorstr="#5c18b4",GradientType=1);
     }
 
     .model-section{
         background: white;
         color: black;
+    }
+
+    .demonstration-section{
+        background: white;
     }
 
     .file-msg{
@@ -226,7 +246,6 @@
     }
 
     .result-container{
-        height: 10rem;
     }
 
 }

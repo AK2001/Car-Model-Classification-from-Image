@@ -1,0 +1,50 @@
+.cell{
+    background-color: #3a3a3a;
+    color: white;
+    width: 45vw;
+    border-radius: 5px;
+    padding: 5px 5px 5px 0;
+    overflow: auto;
+
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.60);
+    -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,0.60);
+    -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,0.60);
+
+}
+
+.cell > table{
+    table-layout: fixed;
+    font-family: consolas, monospace;
+    letter-spacing: 0.01rem;
+    line-height: 1.1rem;
+}
+
+.line-number{
+    border-right: 1px solid #808080;
+    width: 1.5rem;
+    text-align: end;
+    vertical-align: top;
+    padding-right: 5px;
+    padding-left: 8px;
+}
+
+.line-code{
+    text-align: start;
+    padding-left: 5px;
+}
+
+.line-code > span{
+    color: #fda607;
+}
+
+.line-code > .comment{
+    font-style: italic;
+    color: lightgreen;
+}
+
+@media screen and (max-width:767px){
+    .cell{
+        width: 80vw;
+
+    }
+}
