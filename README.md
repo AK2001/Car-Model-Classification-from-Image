@@ -2,6 +2,8 @@
 
 ### This repository contains a project created by me as part of my final year dissertation in Computer Science.
 
+### Kidnly note that this is an unfinished work and is subject to changes and/or bugs!
+
 **Aims**
 ---
 The aim of this project is to create a machine learning model using Transfer Learning method, in order to be able to classify models of car based on a given car image. Due to the nature of the problem, I decided to use a pre-trained ResNet34 architecture, which by no surprise managed to have a Top1 accuracy of 90.41%.
