@@ -2,7 +2,7 @@
 
 ### This repository contains a project created by me as part of my final year dissertation in Computer Science.
 
-### Kidnly note that this is an unfinished work and is subject to changes and/or bugs!
+### <u>Kidnly note that this is an unfinished work and is subject to changes and/or bugs!</u>
 
 **Aims**
 ---
