@@ -1,0 +1,4 @@
+# Ignore dataset
+/car_model_data
+# Ignore saved model dicts
+/saved_models
