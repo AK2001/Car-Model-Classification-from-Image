@@ -32,7 +32,7 @@
 .welcome-section a{
     color: var(--orange-1);
     font-weight: bolder;
-    text-decoration: none;
+    font-style: italic;
 }
 
 .welcome-section a:link a:active, a:visited{
@@ -40,13 +40,14 @@
 }
 
 .welcome-section a:hover{
-    font-style: italic;
+    font-style: normal;
+    text-decoration: none;
     color: var(--orange-1);
 }
 
 .emp-text{
     font-weight: bolder;
-    color: var(--orange-1);
+    font-style: italic;
 }
 
 .emp-text:hover{
@@ -233,6 +234,8 @@
 @media screen and (max-width:767px){
     .main-container{
         background: radial-gradient(circle, var(--purple-2) 65%, var(--purple-1) 100%);
+        padding-top: 4rem;
+
     }
 
     .welcome-section{
@@ -240,14 +243,25 @@
         background: -webkit-radial-gradient(circle, var(--purple-2) 0%, var(--purple-1) 100%);
         background: radial-gradient(circle, var(--purple-2) 65%, var(--purple-1) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5b0fbd",endColorstr="#5c18b4",GradientType=1);
+
+        text-align: center;
+        height: auto;
+        min-height: 100% !important;
     }
 
-    .model-section{
+    .model-section, .demonstration-section{
         background: white;
         color: black;
     }
 
 }
+
+@media screen and (max-width:575px){
+    .main-container{
+        padding-top: 3rem;
+    }
+}
+
 
 /*For mobile or tablet devices that have a touchscreen
 we want to enable input by camera*/

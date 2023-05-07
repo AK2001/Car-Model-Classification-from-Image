@@ -10,28 +10,6 @@
 }
 
 .demo-next > img{
-    width: 3vmin;
-    height: 4vmin;
-}
-
-.part-5{
-    padding-top: 1rem;
-    display: inline-flex;
-}
-
-.part-5 > h3{
-    transform: translate(10%, 15%) rotate(10deg);
-    font-style: italic;
-}
-
-.part-5 > img{
-    width: 26vmin;
-    height: 20vmin;
-    object-fit: cover;
-    object-position: center;
-
-    box-shadow: 0 0 25px 1px rgba(0,0,0,0.60);
-    -webkit-box-shadow: 0 0 25px 1px rgba(0,0,0,0.60);
-    -moz-box-shadow: 0 0 25px 1px rgba(0,0,0,0.60);
-
+    width: 1.5em;
+    height: 2.1em;
 }

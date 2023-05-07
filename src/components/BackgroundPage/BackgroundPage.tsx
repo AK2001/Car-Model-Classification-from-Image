@@ -13,11 +13,11 @@ export default function BackgroundPage(){
                     <div className="pt-2">
                         <h2>Interested in learning how the Network was created or how it works? Take a look!</h2>
                         <p className="mt-4 fs-5"><span className="emp-text">To begin with</span>, the Network was both trained and tested using the <a href="https://ai.stanford.edu/~jkrause/cars/car_dataset.html" target="_blank" rel="noreferrer">Stanford Car Dataset</a>
-                            , which contains around <b>16K</b>! images of cars.</p>
+                            , which contains around <b>16K</b>! labeled images of cars.</p>
 
                         <p className="mt-4 fs-5"><span className="emp-text">Moreover</span>, while a variety of model architectures were tested, ranging from "simple" CNNs to more complex ones,
                             such as ResNet50, it was ultimately decided to use the <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="noreferrer">ResNet34</a> architecture through&nbsp;
-                            <span className="emp-text">Transfer Learning</span> in order to maximize results.</p>
+                            <span className="emp-text">Transfer Learning</span> in order to maximize model performance.</p>
 
                         <p className="mt-2 fs-6">With a total number of <span className="emp-text">21.797.672M</span><sup><a href="https://pytorch.org/vision/main/models/generated/torchvision.models.resnet34.html#torchvision.models.ResNet34_Weights" target="_blank" rel="noreferrer">[1]</a></sup>
                             &nbsp;parameters and a remarkable Top5 accuracy of <b>91.42%</b> on ImageNet-1K, ResNet34 is a better choice than other well-known architectures.</p>
@@ -76,8 +76,12 @@ export default function BackgroundPage(){
                                 <>
                                     <tr className="line">
                                         <td className="line-number"></td>
-                                        <td className="line-code"><span className="comment"># Now that image is a tensor of shape [ColourChannels, Height, Width], we use unsqueeze()
-                                        to add a single dimension. This is because our model's input must be a 4D tensor</span></td>
+                                        <td className="line-code"><span className="comment"># Transform user image.</span></td>
+                                    </tr>
+                                    <tr className="line">
+                                        <td className="line-number"></td>
+                                        <td className="line-code"><span className="comment"># Now that image is a 3D tensor [ColourChannels, Height, Width], we use unsqueeze()
+                                        to add a single dimension. This is because our model is expecting a 4D tensor as input</span></td>
                                     </tr>
                                     <tr className="line">
                                         <td className="line-number"></td>
@@ -117,17 +121,16 @@ export default function BackgroundPage(){
                                     <tr className="line">
                                         <td className="line-number"></td>
                                         <td className="line-code"><span className="comment"># Note the .to(device) part! This is when we tell the program
-                                            that we want the image to be calculated using the selected device (In our case, GPU).</span></td>
-                                    </tr>
-                                    <tr className="line">
-                                        <td className="line-number"></td>
-                                        <td className="line-code"><span className="comment"># Of course the final step is to pass the predictions through
-                                        a process in order to find the labels of Top1 and Top3 prediction accuracies. We use PyTorch's topk() method for finding
-                                        Top3 predictions.</span></td>
+                                            to do its calculations on the provided device (GPU).</span></td>
                                     </tr>
                                     <tr className="line">
                                         <td className="line-number"></td>
                                         <td className="line-code">image_prediction = <span>model</span>(transformed_image.to(device))</td>
+                                    </tr>
+                                    <tr className="line">
+                                        <td className="line-number"></td>
+                                        <td className="line-code"><span className="comment"># Afterwards, the predictions pass through
+                                        another process to find the labels of Top1 and Top3 prediction accuracies. We use PyTorch's topk() method for that.</span></td>
                                     </tr>
                                 </>
                             }/>

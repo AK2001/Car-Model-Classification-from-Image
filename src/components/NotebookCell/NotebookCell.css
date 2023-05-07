@@ -34,7 +34,7 @@
 }
 
 .line-code > span{
-    color: #fda607;
+    color: var(--orange-1);
 }
 
 .line-code > .comment{
@@ -44,7 +44,7 @@
 
 @media screen and (max-width:767px){
     .cell{
-        width: 80vw;
-
+        width: 85vw;
+        font-size: 0.9em;
     }
 }
