@@ -23,7 +23,7 @@ export default function Header({title = "About"}: MenuProps) {
                         <Nav.Link id="nav-link" href="#about">{title}</Nav.Link>
                     </Nav>
 
-                    <Nav.Link href="/#">
+                    <Nav.Link href="https://github.com/AK2001/Car-Model-Classification-from-Image" target="_blank" rel="noreferrer">
                         <LinkToGithub/>
                     </Nav.Link>
 

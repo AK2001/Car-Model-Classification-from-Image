@@ -5,24 +5,24 @@
 
 
     background: rgb(92,24,180);
-    background: -moz-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.9) 25%, rgba(255,165,0,0.95) 48%, rgba(255,255,255,1) 48%);
-    background: -webkit-linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.9) 25%, rgba(255,165,0,0.95) 48%, rgba(255,255,255,1) 48%);
-    background: linear-gradient(45deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.9) 25%, rgba(255,165,0,0.95) 48%, rgba(255,255,255,1) 48%);
+    background: -moz-linear-gradient(45deg, var(--purple-1) 5%, var(--purple-2) 25%, var(--orange-1) 48%, rgba(255,255,255,1) 48%);
+    background: -webkit-linear-gradient(45deg, var(--purple-1) 5%, var(--purple-2) 25%, var(--orange-1) 48%, rgba(255,255,255,1) 48%);
+    background: linear-gradient(45deg,var(--purple-1) 5%, var(--purple-2) 25%, var(--orange-1) 48%, rgba(255,255,255,1) 48%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
 }
 
 @media screen and (max-width:1124px){
     .nav-menu{
         background: rgb(92,24,180);
-        background: -moz-linear-gradient(150deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.99) 50%, rgba(255,165,0,0.98) 100%);
-        background: -webkit-linear-gradient(150deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.99) 50%, rgba(255,165,0,0.98) 100%);
-        background: linear-gradient(150deg, rgba(92,24,180,1) 5%, rgba(92,24,180,0.99) 50%, rgba(255,165,0,0.98) 100%);
+        background: -moz-linear-gradient(150deg, var(--purple-1) 5%, var(--purple-2) 50%, var(--orange-1) 100%);
+        background: -webkit-linear-gradient(150deg, var(--purple-1) 5%, var(--purple-2) 50%, var(--orange-1) 100%);
+        background: linear-gradient(150deg, var(--purple-1) 5%, var(--purple-2) 50%, var(--orange-1) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
     }
 }
 
 #nav-brand{
-    color: orange !important;
+    color: var(--orange-1) !important;
     font-size: 120%;
     padding-left: 0.5rem;
     position:relative;
@@ -43,7 +43,7 @@
 }
 
 #nav-link{
-    color: orange!important;
+    color: var(--orange-1)!important;
     max-width: 8rem;
     position: relative;
 }
@@ -83,5 +83,12 @@
 
     #nav-link:after, #nav-link:hover:after{
         all: revert;
+    }
+
+}
+
+@media screen and (max-width:400px){
+    #nav-brand{
+        font-size: 1em;
     }
 }

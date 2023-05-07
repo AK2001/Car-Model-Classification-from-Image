@@ -1,12 +1,14 @@
 .main-container{
-    background: rgb(92,24,180);
-    background: -moz-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
+    background: var(--purple-1);
+    background: -moz-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%,  var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
     background: -webkit-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
     background: linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
 
     padding-top: 5rem;
 }
+
+/* WELCOME SECTION */
 
 .welcome-section{
     color:white;
@@ -15,7 +17,7 @@
 }
 
 .welcome-section .bg-hover-animation{
-    background: linear-gradient(53deg, transparent, var(--orange-1), darkorange, var(--orange-1), transparent) no-repeat right bottom / 0 var(--bg-h);
+    background: linear-gradient(53deg, transparent, var(--orange-1), var(--purple-1), var(--orange-1), transparent) no-repeat right bottom / 0 var(--bg-h);
     transition: background-size 490ms;
     --bg-h: 100%;
     width: fit-content;
@@ -28,6 +30,8 @@
 }
 
 .welcome-section a{
+    color: var(--orange-1);
+    font-weight: bolder;
     text-decoration: none;
 }
 
@@ -36,7 +40,6 @@
 }
 
 .welcome-section a:hover{
-    font-weight: bolder;
     font-style: italic;
     color: var(--orange-1);
 }
@@ -112,7 +115,9 @@
     color: var(--purple-1) !important;
 }
 
-.file-input-area{
+/* MODEL SECTION */
+
+.file-input-area, .file-input-area-mobile{
     position:relative;
     display: flex;
     align-items: center;
@@ -125,8 +130,17 @@
     transition: 0.2s;
 }
 
-.file-input-area:hover {
+.file-input-area:hover, .file-input-area-mobile:hover{
     background: rgba(255, 167, 0, 0.1);
+}
+
+.file-input-area-mobile{
+    width: fit-content!important;
+    margin:auto;
+}
+
+.user-input-mobile-camera{
+    display: none;
 }
 
 .file-msg{
@@ -218,13 +232,13 @@
 
 @media screen and (max-width:767px){
     .main-container{
-        background: rgba(92,24,180,1);
+        background: radial-gradient(circle, var(--purple-2) 65%, var(--purple-1) 100%);
     }
 
     .welcome-section{
-        background: -moz-radial-gradient(circle, rgba(91,15,189,1) 0%, var(--purple-1) 100%);
-        background: -webkit-radial-gradient(circle, rgba(91,15,189,1) 0%, var(--purple-1) 100%);
-        background: radial-gradient(circle, rgba(91,15,189,1) 0%, var(--purple-1) 100%);
+        background: -moz-radial-gradient(circle, var(--purple-2) 0%, var(--purple-1) 100%);
+        background: -webkit-radial-gradient(circle, var(--purple-2) 0%, var(--purple-1) 100%);
+        background: radial-gradient(circle, var(--purple-2) 65%, var(--purple-1) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5b0fbd",endColorstr="#5c18b4",GradientType=1);
     }
 
@@ -233,8 +247,14 @@
         color: black;
     }
 
-    .demonstration-section{
-        background: white;
+}
+
+/*For mobile or tablet devices that have a touchscreen
+we want to enable input by camera*/
+@media only screen and (hover: none) and (pointer: coarse){
+
+    .user-input-mobile-camera{
+        display: block;
     }
 
     .file-msg{
@@ -243,9 +263,6 @@
 
     .file-msg-mobile{
         display: block;
-    }
-
-    .result-container{
     }
 
 }

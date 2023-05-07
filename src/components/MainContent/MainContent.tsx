@@ -190,9 +190,20 @@ export default function MainContent() {
                                     <span className="file-msg">Drag & Drop to upload image or <u>click here</u>.</span>
                                     <span className="file-msg-mobile">Click here to upload your image.</span>
                                     <input className="file-input" type="file" accept="image/*"
-                                           onChange={imageHandler} ref={imageInputRef} />
+                                           onChange={imageHandler} ref={imageInputRef}/>
                                 </div>
-                                <button className="file-btn" id="cancelBtn" onClick={clearImage}>Cancel</button>
+
+                                <div className="text-center user-input-mobile-camera">
+                                    <p className="fw-bolder fs-3 p-2 m-auto">OR</p>
+                                    <div className="file-input-area-mobile">
+                                        <span className="file-msg-mobile">Use your camera &#x1F4F8;</span>
+                                        <input className="file-input" type="file" accept="image/*"
+                                               onChange={imageHandler} ref={imageInputRef}
+                                               capture="environment"/>
+                                    </div>
+                                </div>
+
+                                <button className="file-btn mt-2" id="cancelBtn" onClick={clearImage}>Cancel</button>
                             </div>
                             <div className="image-container">
                                 {isInputClear ?
