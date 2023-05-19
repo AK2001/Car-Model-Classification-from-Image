@@ -98,7 +98,7 @@ export default function MainContent() {
         imageInputRef.current!.value = "";
     }
 
-    // State to store loading component status
+    // State to store loading spinner component status
     const [isLoading, setIsLoading] = useState(false);
 
     // Shows results to the user - makes POST request to the backend
@@ -106,17 +106,18 @@ export default function MainContent() {
 
         document.getElementById("test-btn")!.style.display = "none"; // Make "test" btn invisible
         document.getElementById('cancelBtn')!.setAttribute("disabled","disabled"); // Disable "cancel" btn
+
         // Disable demo image section during image testing
         for (let i=1; i <=3; i++){
             document.getElementById("demo-img-"+i.toString())!.style.pointerEvents = "none";
         }
-        // Disable user input also
+        // Disable user input fields also
         document.getElementById("user-input")!.style.pointerEvents = "none";
+        document.getElementById("user-input-camera")!.style.pointerEvents = "none";
 
         setIsLoading(true); // Show loading spinner
 
         let data: {}
-
         // For demo images
         if (imageData.demoImageId !== ""){
             data = {"file": null, "demo_pred": 0}
@@ -141,9 +142,12 @@ export default function MainContent() {
             }).finally(() => {
                 setIsLoading(false) // Hide loading spinner
                 document.getElementById('cancelBtn')!.removeAttribute("disabled"); // Enable "cancel" btn
+
+                // Allow user to click on demo image and input fields.
                 for (let i=1; i <=3; i++){
                     document.getElementById("demo-img-"+i.toString())!.style.pointerEvents = "auto";
                 }
+                document.getElementById("user-input-camera")!.style.pointerEvents = "auto";
                 document.getElementById("user-input")!.style.pointerEvents = "auto";
             })
     }
@@ -176,7 +180,18 @@ export default function MainContent() {
                                     <img className="demo-image mb-0" id="demo-img-3" src={require("../../assets/images/demo-img-3.jpg")} width={160} height={160} alt="demo car 3" onClick={imageHandler}/>
                                 </div>
                             </>
+                            <div className="logo-containers">
+                                <div className="d-inline-flex">
+                                    <img  src={require("../../assets/images/ath-logo.png")} width={140} alt="ath tech logo" />
 
+                                    <a href={"https://www.linkedin.com/in/alexandros-kelaiditis-7802021a8"} target="_blank" className="social-btn" rel="noreferrer">
+                                        <img src={require("../../assets/images/linkedin-logo.png")} width={35} alt="linkedin logo" />
+                                    </a>
+                                    <a href="mailto:al.kelaiditis@gmail.com" className="social-btn">
+                                        <img src={require("../../assets/images/mail-logo.png")} width={35} alt="mail logo" />
+                                    </a>
+                                </div>
+                            </div>
                         </>
                     </section>
                 </Col>
@@ -195,7 +210,7 @@ export default function MainContent() {
 
                                 <div className="text-center user-input-mobile-camera">
                                     <p className="fw-bolder fs-3 p-2 m-auto">OR</p>
-                                    <div className="file-input-area-mobile">
+                                    <div id="user-input-camera" className="file-input-area-mobile">
                                         <span className="file-msg-mobile">Use your camera &#x1F4F8;</span>
                                         <input className="file-input" type="file" accept="image/*"
                                                onChange={imageHandler} ref={imageInputRef}
@@ -240,8 +255,8 @@ export default function MainContent() {
                                         :
                                         errorOccurredDuringImageUpload ?
                                             (<div className="error-message">
-                                                <p className="">Oops...Looks like something went wrong.</p>
-                                                <p className="">If you keep encountering the same error, feel free to <a href="mailto:al.kelaiditis@gmail.com">contact me</a>.</p>
+                                                <p>Oops...Looks like something went wrong.</p>
+                                                <p>If you keep encountering the same error, feel free to <a href="mailto:al.kelaiditis@gmail.com">contact me</a>.</p>
                                             </div>)
                                             :
                                             (<></>)
