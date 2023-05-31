@@ -22,7 +22,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/API/getClasses")
 async def get_dataset_class_names():
     return get_class_names()
@@ -30,21 +29,24 @@ async def get_dataset_class_names():
 
 @app.post("/API/predictImage")
 async def predict_image_with_model(file: UploadFile = None, demo_pred: str = ""):
-    # If the user has uploaded their own image, then demo_pred = "", which means that they haven't
-    # selected a demo image.
+
+    """
+    Makes a prediction on a given image and
+    returns the Top1 pred, Top1 prediction accuracy, and Top3 predictions (without accuracies)
+
+    file: A single file of UploadFile type. It is passed as data in the POST request
+    demo_pred: A parameter in the request that defines whether the request concerns a static image (demo image)
+               If demo pred != "", then it will be either [demo-img-1, demo-img-2, demo-img-3].
+    """
+
     if demo_pred != "":
         image = PIL.Image.open(open("static/images/"+demo_pred+".jpg", 'rb'))
     else:
         image = PIL.Image.open(io.BytesIO(file.file.read()))
 
-    # Uncomment to open image locally
-    # image.show()
-
-    # Get image prediction
+    # Get model prediction on image
     pred, acc, top3_preds = model_prediction(image)
 
     return {"modelPrediction": pred,
             "modelAccuracy": acc,
             "top3Predictions": top3_preds}
-
-# FastApi resource for image file input: https://fastapi.tiangolo.com/tutorial/request-files/

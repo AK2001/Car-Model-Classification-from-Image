@@ -5,7 +5,6 @@ from PIL import Image
 from pathlib import Path
 from typing import Tuple
 
-carList = ["Nissan", "Mitsubishi", "Chevrolet", "Subaru", "Mazda", "Ford"]
 MODEL_PATH = Path("app/model/model_dict/pytorch_model_ResNet34")
 
 CLASS_NAMES = ['AM General Hummer SUV 2000',
@@ -297,21 +296,21 @@ def pred_image(model: torch.nn.Module,
     target_image_pred_label = torch.argmax(target_image_pred_probs, dim=1)
 
     # Finds the indices of the top 3 predictions
-    top3_preds = torch.topk(target_image_pred_probs, k=3, dim=1).indices
+    top3_predictions = torch.topk(target_image_pred_probs, k=3, dim=1).indices
 
     # Convert top 3 predictions from tensor to list
-    top3_preds = torch.squeeze(top3_preds).tolist()
+    top3_predictions = torch.squeeze(top3_predictions).tolist()
 
     # Get top 3 class names
-    top3_class_preds = []
-    for pred in top3_preds:
-        top3_class_preds.append(class_names[pred])
+    top3_class_predictions = []
+    for pred in top3_predictions:
+        top3_class_predictions.append(class_names[pred])
 
     # Shows top1 accuracy
     # print(f"Pred: {class_names[target_image_pred_label]} | Prob: {target_image_pred_probs.max():.3f}")
 
     # Returns the Top1 prediction (Class name predicted and probability), and the Top3 prediction labels
-    return class_names[target_image_pred_label], target_image_pred_probs.max().item(), top3_class_preds
+    return class_names[target_image_pred_label], target_image_pred_probs.max().item(), top3_class_predictions
 
 
 def model_prediction(image: Image):
