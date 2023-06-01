@@ -13,3 +13,34 @@
     width: 1.5em;
     height: 2.1em;
 }
+
+.result-graphs > img{
+    margin: 1rem;
+    width: 20rem;
+    height: auto;
+
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.30);
+    -webkit-box-shadow: 0 0 7px 0 rgba(0,0,0,0.30);
+    -moz-box-shadow: 0 0 7px 0 rgba(0,0,0,0.30);
+}
+
+.result-graphs > #comparison-graph{
+    width: 25rem;
+}
+
+.model-list-container{
+    max-height: 70vmin;
+    overflow: auto;
+}
+
+@media screen and (max-width:950px){
+    .result-graphs > #comparison-graph{
+        width: 20rem;
+    }
+}
+
+@media screen and (max-width:400px){
+    .result-graphs > img{
+        width: 15rem;
+    }
+}

@@ -165,7 +165,7 @@ export default function MainContent() {
                             <h3 className="mt-2">A project made by <a href="https://www.linkedin.com/in/alexandros-kelaiditis-7802021a8" target="_blank" rel="noreferrer">Alexandros Kelaiditis</a> as part of his
                                 dissertation in Computer Science.</h3>
                             <p>Interested in learning how it works? <a href="/background">Learn more here</a>.</p>
-                            <p className="mt-4 fs-5"><span className="emp-text">To get started</span>, simply <b>upload</b> an image of a car, <b>click</b> on the button that appears below and wait
+                            <p className="mt-4 fs-5"><span className="emp-text">To get started</span>, simply upload an image of a car, then click on the button that appears below and wait
                                 as the Network tries to classify the car's model.</p>
                             <p className="mt-4 fs-5"> Please <u>note</u> that the Network can only classify <b>196</b> different car models. To view the
                                 entire list of models, <a href="/limitations">click here</a>.</p>

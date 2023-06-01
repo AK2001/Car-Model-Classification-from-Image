@@ -36,7 +36,7 @@
 }
 
 .welcome-section a:link a:active, a:visited{
-    color: var(--orange-1);
+    color: white;
 }
 
 .welcome-section a:hover{
@@ -46,12 +46,12 @@
 }
 
 .emp-text{
-    font-weight: bolder;
+    color: var(--orange-1);
     font-style: italic;
 }
 
 .emp-text:hover{
-    text-decoration: underline;
+    font-weight: bolder;
 }
 
 .demo-images{
