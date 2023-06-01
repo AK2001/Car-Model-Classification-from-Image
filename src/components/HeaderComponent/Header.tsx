@@ -35,11 +35,10 @@ export default function Header() {
                     {/*Nav links*/}
                     <Nav className="me-auto ">
                         <Nav.Link id="nav-link" href="/background">Background</Nav.Link>
-                        <Nav.Link id="nav-link" href="#about">Limitations</Nav.Link>
                     </Nav>
 
                     <Nav className="d-inline-block">
-                        <span id="check-github-msg">Check my Github! &#x27A1;</span>
+                        <span id="check-github-msg">Check out my Github! &#x27A1;</span>
                         <Nav.Link id="github-link" href="https://github.com/AK2001/Car-Model-Classification-from-Image" target="_blank" rel="noreferrer">
                             <LinkToGithub/>
                         </Nav.Link>

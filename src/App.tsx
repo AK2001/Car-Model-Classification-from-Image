@@ -18,13 +18,16 @@ function App() {
                 <Routes>
 
                     <Route path="/" element={
-                        <>
-                            <MainContent/>
-                        </>
+                        <MainContent/>
                     }>
                     </Route>
 
                     <Route path="/background" element={
+                        <BackgroundPage/>
+                    }>
+                    </Route>
+
+                    <Route path="/limitations" element={
                         <BackgroundPage/>
                     }>
                     </Route>

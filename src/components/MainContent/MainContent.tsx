@@ -157,42 +157,30 @@ export default function MainContent() {
             <Row>
                 <Col sm={12} md={6} className="welcome-section p-4">
                     <section>
+
+                        <h1>
+                            <span className="bg-hover-animation">Car model classification using <br/> Convolutional Neural Networks.</span>
+                        </h1>
+                        <div className="pt-2">
+                            <h3 className="mt-2">A project made by <a href="https://www.linkedin.com/in/alexandros-kelaiditis-7802021a8" target="_blank" rel="noreferrer">Alexandros Kelaiditis</a> as part of his
+                                dissertation in Computer Science.</h3>
+                            <p>Interested in learning how it works? <a href="/background">Learn more here</a>.</p>
+                            <p className="mt-4 fs-5"><span className="emp-text">To get started</span>, simply <b>upload</b> an image of a car, <b>click</b> on the button that appears below and wait
+                                as the Network tries to classify the car's model.</p>
+                            <p className="mt-4 fs-5"> Please <u>note</u> that the Network can only classify <b>196</b> different car models. To view the
+                                entire list of models, <a href="/limitations">click here</a>.</p>
+                        </div>
                         <>
-                            <h1>
-                                <span className="bg-hover-animation">Car model classification using <br/> Convolutional Neural Networks.</span>
-                            </h1>
-                            <div className="pt-2">
-                                <h3 className="mt-2">A project made by <a href='/#'>Alexandros Kelaiditis</a> as part of his
-                                    dissertation in Computer Science.</h3>
-                                <p>Interested in learning how it works? <a href="/background">Learn more here</a>.</p>
-
-                                <p className="mt-4 fs-5"><span className="emp-text">To get started</span>, simply <b>upload</b> an image of a car, <b>click</b> on the button that appears below and wait
-                                    as the Network tries to classify the car's model.</p>
-                                <p className="mt-4 fs-5"> Please <u>note</u> that the Network can only classify <b>196</b> different car models. To view the
-                                    entire list of models, <a href="/background">click here</a>.</p>
-                            </div>
-
-                            <>
-                                <p className="fs-5 mb-2">Need a quick demo? Try one of these sample images: </p>
-                                <div className="demo-images">
-                                    <img className="demo-image mb-0" id="demo-img-1" src={require("../../assets/images/demo-img-1.jpg")} width={160} height={160} alt="demo car 1" onClick={imageHandler}/>
-                                    <img className="demo-image mb-0" id="demo-img-2" src={require("../../assets/images/demo-img-2.jpg")} width={160} height={160} alt="demo car 2" onClick={imageHandler}/>
-                                    <img className="demo-image mb-0" id="demo-img-3" src={require("../../assets/images/demo-img-3.jpg")} width={160} height={160} alt="demo car 3" onClick={imageHandler}/>
-                                </div>
-                            </>
-                            <div className="logo-containers">
-                                <div className="d-inline-flex">
-                                    <img  src={require("../../assets/images/ath-logo.png")} width={140} alt="ath tech logo" />
-
-                                    <a href={"https://www.linkedin.com/in/alexandros-kelaiditis-7802021a8"} target="_blank" className="social-btn" rel="noreferrer">
-                                        <img src={require("../../assets/images/linkedin-logo.png")} width={35} alt="linkedin logo" />
-                                    </a>
-                                    <a href="mailto:al.kelaiditis@gmail.com" className="social-btn">
-                                        <img src={require("../../assets/images/mail-logo.png")} width={35} alt="mail logo" />
-                                    </a>
-                                </div>
+                            <p className="fs-5 mb-3">Need a quick demo? Try one of these sample images: </p>
+                            <div className="demo-images">
+                                <img className="demo-image mb-0" id="demo-img-1" src={require("../../assets/images/demo-img-1.jpg")} width={160} height={160} alt="demo car 1" onClick={imageHandler}/>
+                                <img className="demo-image mb-0" id="demo-img-2" src={require("../../assets/images/demo-img-2.jpg")} width={160} height={160} alt="demo car 2" onClick={imageHandler}/>
+                                <img className="demo-image mb-0" id="demo-img-3" src={require("../../assets/images/demo-img-3.jpg")} width={160} height={160} alt="demo car 3" onClick={imageHandler}/>
                             </div>
                         </>
+                        <div className="logo-containers">
+                            <img  src={require("../../assets/images/ath-logo.png")} width={140} alt="ath tech logo" />
+                        </div>
                     </section>
                 </Col>
 
@@ -201,10 +189,10 @@ export default function MainContent() {
                         <div className="w-100">
                             <h1 className="heading">Try it out!</h1>
                             <div className="d-block w-100 file-input-section">
-                                <div id="user-input" className="file-input-area"> {/*<-- was form*/}
+                                <div id="user-input" className="file-input-area">
                                     <span className="file-msg">Drag & Drop to upload image or <u>click here</u>.</span>
                                     <span className="file-msg-mobile">Click here to upload your image.</span>
-                                    <input className="file-input" type="file" accept="image/*"
+                                    <input className="file-input" type="file" accept="image/jpeg"
                                            onChange={imageHandler} ref={imageInputRef}/>
                                 </div>
 
@@ -212,7 +200,7 @@ export default function MainContent() {
                                     <p className="fw-bolder fs-3 p-2 m-auto">OR</p>
                                     <div id="user-input-camera" className="file-input-area-mobile">
                                         <span className="file-msg-mobile">Use your camera &#x1F4F8;</span>
-                                        <input className="file-input" type="file" accept="image/*"
+                                        <input className="file-input" type="file" accept="image/jpeg"
                                                onChange={imageHandler} ref={imageInputRef}
                                                capture="environment"/>
                                     </div>
