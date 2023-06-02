@@ -206,7 +206,8 @@ CLASS_NAMES = ['AM General Hummer SUV 2000',
 
 
 def create_model():
-    """ Creates an instance of the required PyTorch model and modifies it according to specific changes """
+    """ Creates an instance of the required PyTorch model and
+        modifies it according to specific changes """
 
     model = models.resnet34(weights=models.ResNet34_Weights.DEFAULT)
     num_ftrs = model.fc.in_features
@@ -224,12 +225,35 @@ def load_model():
     return model
 
 
+def prepare_image(image: Image,
+                  image_size: Tuple[int, int] = (400, 400),
+                  transform: transforms = None):
+    """Prepares an image for prediction
+
+    Args:
+        image: A PIL image.
+        image_size: The image size that we want the image to be resized to.
+        (By default, the model was trained and tested on 400x400 images)
+
+        transform: A PyTorch transform for images
+        (By default is None, we use the transforms the model was tested on).
+
+    Returns:
+        A transformed image in the form of a tensor
+    """
+
+    if transform is not None:
+        image_transform = transforms
+    else:
+        image_transform = transforms.Compose([transforms.Resize(image_size),
+                                              transforms.ToTensor(),
+                                              transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    return image_transform(image)
+
+
 # Takes in a trained model, class names, image path, image size, a transform and target device
 def pred_image(model: torch.nn.Module,
                image: Image,
-               class_names=None,
-               image_size: Tuple[int, int] = (400, 400),
-               transform: transforms = None,
                device: torch.device = "cuda"):
     """Uses a PyTorch model to make a prediction on a given image.
 
@@ -239,12 +263,6 @@ def pred_image(model: torch.nn.Module,
       Args:
         model: A PyTorch model to be trained and tested.
         image: A PIL image.
-        class_names: The list of all class names in our dataset (In our case 196 classes).
-        image_size: The image size that we want the image to be resized to.
-        (By default, the model was trained and tested on 400x400 images)
-
-        transform: A PyTorch transform for images (By default is None, we use the transforms the model
-        was trained and tested on).
         device: A target device to compute on (e.g. "cuda" or "cpu", "cuda" is by default).
 
       Returns:
@@ -260,16 +278,7 @@ def pred_image(model: torch.nn.Module,
                              Chrysler Sebring Convertible 2010]]
     """
 
-    # Create transformation for image (if one doesn't exist)
-    if class_names is None:
-        class_names = CLASS_NAMES
-
-    if transform is not None:
-        image_transform = transform
-    else:
-        image_transform = transforms.Compose([transforms.Resize(image_size),
-                                              transforms.ToTensor(),
-                                              transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    class_names = get_class_names()
 
     # Make sure the model is on the target device
     model.to(device)
@@ -278,7 +287,7 @@ def pred_image(model: torch.nn.Module,
     model.eval()
     with torch.inference_mode():
         # Transform and add an extra dimension to image (model requires samples in [batch_size, color_channels, height, width])
-        transformed_image = image_transform(image).unsqueeze(dim=0)
+        transformed_image = prepare_image(image).unsqueeze(dim=0)
 
         # Show transformed Image
         # transform_to_tensor = transforms.ToPILImage()
@@ -317,9 +326,9 @@ def model_prediction(image: Image):
     """ Loads a specified PyTorch model and calls pred_image() method on a given image for that model """
 
     model = load_model()
-    predicted_model, prediction_acc, top3 = pred_image(model=model, image=image)
+    top_1_pred, prediction_acc, top3_preds = pred_image(model=model, image=image)
 
-    return predicted_model, prediction_acc, top3
+    return top_1_pred, prediction_acc, top3_preds
 
 
 def get_class_names():
