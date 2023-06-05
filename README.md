@@ -2,6 +2,7 @@
 
 ### This repository contains a project created by me as part of my final year dissertation in Computer Science.
 
+
 **Aims**
 ---
 The aim of this project is to create a machine learning model using Transfer Learning method, in order to be able to classify models of car based on a given car image. 
