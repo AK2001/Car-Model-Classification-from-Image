@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 import NotebookCell from "../NotebookCell/NotebookCell";
 
 export default function BackgroundPage(){
-
+    // List of all labels the model can classify
     let list: Array<String> = ['AM General Hummer SUV 2000',
         'Acura RL Sedan 2012',
         'Acura TL Sedan 2012',
@@ -207,7 +207,6 @@ export default function BackgroundPage(){
         'Volvo XC90 SUV 2007',
         'smart fortwo Convertible 2012']
 
-
     return (
         <Container fluid className="main-container min-vh-100">
             <Row>
@@ -239,7 +238,7 @@ export default function BackgroundPage(){
                     <h1 className="heading">Behind the Scenes</h1>
 
                     <Tabs
-                        defaultActiveKey="results"
+                        defaultActiveKey="image"
                         id="justify-tab-example"
                         className="mb-3"
                         justify
@@ -365,8 +364,8 @@ export default function BackgroundPage(){
                             </div>
                         </Tab>
 
-                        <Tab eventKey="model-list" title="Car Model list" className="model-list-container">
-                            <Table striped bordered hover>
+                        <Tab eventKey="label-list" title="Car Model list" className="model-list-container">
+                            <Table className="label-table" striped bordered hover variant="dark">
                                 <tbody>
                                 {list.map(function(model, idx){
                                     return (<tr><td>{idx+1}</td><td>{model}</td></tr>)
