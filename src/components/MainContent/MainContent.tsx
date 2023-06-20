@@ -34,10 +34,10 @@ export default function MainContent() {
 
     // Gets called each time user selects an image as input (Or clicks on Demo)
     const imageHandler = (event: BaseSyntheticEvent) => {
-        event.preventDefault()
+        event.preventDefault();
 
         // Clear any errors that may have happened
-        setErrorOccurredDuringImageUpload(false)
+        setErrorOccurredDuringImageUpload(false);
 
         let imageHasChanged = true;
         let imgURL = "";
@@ -52,13 +52,14 @@ export default function MainContent() {
             // For user uploaded images (If the event.target.files.length === 0, then User clicked "cancel" upon input)
             imgURL = URL.createObjectURL(event.target.files[0])
             img = event.target.files[0]
+            // Resets the value of the file input
+            event.target.value = '';
         } else {
             imageHasChanged = false
         }
 
         // If image was changed during input (In case user clicked "cancel" upon input)
         if (imageHasChanged) {
-
             // Save image data, a URL and the actual object
             setImageData({
                 imageURL: imgURL,
@@ -94,7 +95,6 @@ export default function MainContent() {
             image: null,
             demoImageId: "",
         })
-
         imageInputRef.current!.value = "";
     }
 
