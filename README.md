@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# Main-Frontend
+This branch contains the Frontend implementations of this project. It is entirely
+created with React.js and uses the react-bootstrap module to achieve responsiveness.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Manual
 
-## Available Scripts
+To execute this application, you may run the following commands in the project directory 
 
-In the project directory, you can run:
+### `npm install`
+
+Downloads all dependencies required to run the application. All dependencies are defined in the
+**package.json** file.
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
+By default, the page will reload if you make edits.
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Demonstration
+
+When you successfully create and run the application, you should be able to see the following
+main page.
+
+The main page allows users to upload an image of a car using the associated input field at the top
+of the right section (white-background).
+
+![](../../Desktop/Individual Project/front Screenshots/main-page.png)
+
+When the users upload an image, it is immediately shown to them right below the input field. In addition,
+when an image is uploaded, users are given the option to engage with the model by clicking on the "test image" button.
+
+After the model has successfully classified the image, users are displayed the classification results right below their image.
+
+The same pages are also available through a mobile phone. However, __note__ that users who access the app through a touch-screen device are
+also given the option to upload an image of a car using their devices camera.
