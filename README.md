@@ -2,6 +2,7 @@
 
 ### This repository contains a project created by me as part of my final year dissertation in BSc Computer Science.
 
+#### To view the paper behind this project, refer to [this](https://www.researchgate.net/publication/372159544_Car_make_and_model_classification_from_image) link.
 
 **Aims**
 ---
