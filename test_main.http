@@ -1,0 +1,11 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/predictImage
+Accept: application/json
+Content-Type: multipart/form-data
+###
+
+GET http://127.0.0.1:8000/hello/User
+Accept: application/json
+
+###
