@@ -246,11 +246,11 @@ export default function BackgroundPage(){
 
                         <Tab eventKey="results" title="Results and comparison">
                             <div className="result-graphs d-inline-block">
-                                <img src={require("../../assets/images/result_graph1.jpg")}  width={250} alt="demo arrow"/>
-                                <img src={require("../../assets/images/result_graph2.jpg")}  width={250} alt="demo arrow"/>
+                                <img src={require("../../assets/images/result_graph1.jpg")} width={250} alt="demo arrow"/>
+                                <img src={require("../../assets/images/result_graph2.jpg")} width={250} alt="demo arrow"/>
                             </div>
                             <div className="result-graphs">
-                                <img id="comparison-graph" src={require("../../assets/images/prediction_graph.jpg")}  width={280} alt="demo arrow"/>
+                                <img id="comparison-graph" src={require("../../assets/images/prediction_graph.jpg")} width={280} alt="demo arrow"/>
                             </div>
                         </Tab>
 
@@ -292,7 +292,7 @@ export default function BackgroundPage(){
                             </div>
 
                             <div className="demo-next">
-                                <img src={require("../../assets/images/demo-arrow.png")}  alt="demo arrow"/>
+                                <img src={require("../../assets/images/demo-arrow.png")} alt="demo arrow"/>
                             </div>
 
                             <div className="demo-step">
@@ -331,7 +331,7 @@ export default function BackgroundPage(){
                             </div>
 
                             <div className="demo-next">
-                                <img src={require("../../assets/images/demo-arrow.png")}  alt="demo arrow"/>
+                                <img src={require("../../assets/images/demo-arrow.png")} alt="demo arrow"/>
                             </div>
 
                             <div className="demo-step">

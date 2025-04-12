@@ -179,7 +179,7 @@ export default function MainContent() {
                             </div>
                         </>
                         <div className="logo-containers">
-                            <img  src={require("../../assets/images/ath-logo.png")} width={140} alt="ath tech logo" />
+                            <img src={require("../../assets/images/ath-logo.png")} width={140} alt="ath tech logo" />
                         </div>
                     </section>
                 </Col>
