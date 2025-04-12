@@ -1,9 +1,10 @@
-import torch
-from torchvision import models
-from torchvision import transforms
-from PIL import Image
 from pathlib import Path
 from typing import Tuple
+
+import torch
+from PIL import Image
+from torchvision import models
+from torchvision import transforms
 
 MODEL_PATH = Path("app/model/model_dict/pytorch_model_ResNet34")
 
@@ -205,7 +206,7 @@ CLASS_NAMES = ['AM General Hummer SUV 2000',
                'smart fortwo Convertible 2012']
 
 
-def create_model():
+def create_model() -> torch.nn.Module:
     """ Creates an instance of the required PyTorch model and
         modifies it according to specific changes """
 
@@ -216,11 +217,12 @@ def create_model():
     return model
 
 
-def load_model():
+def load_model() -> torch.nn.Module:
     """ Loads the Pre-trained state_dict of a PyTorch model """
 
     model = create_model()
-    model.load_state_dict(torch.load(MODEL_PATH))
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
 
     return model
 
@@ -252,9 +254,7 @@ def prepare_image(image: Image,
 
 
 # Takes in a trained model, class names, image path, image size, a transform and target device
-def pred_image(model: torch.nn.Module,
-               image: Image,
-               device: torch.device = "cuda"):
+def pred_image(model: torch.nn.Module, image: Image):
     """Uses a PyTorch model to make a prediction on a given image.
 
       Passes a given image through a given model's forward function.
@@ -263,7 +263,6 @@ def pred_image(model: torch.nn.Module,
       Args:
         model: A PyTorch model to be trained and tested.
         image: A PIL image.
-        device: A target device to compute on (e.g. "cuda" or "cpu", "cuda" is by default).
 
       Returns:
         A List containing the model's top1 prediction alongside its prediction accuracy,
@@ -280,7 +279,8 @@ def pred_image(model: torch.nn.Module,
 
     class_names = get_class_names()
 
-    # Make sure the model is on the target device
+    # Make sure the model is on the correct device
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
     # Turn on model evaluation mode and inference mode
@@ -322,10 +322,9 @@ def pred_image(model: torch.nn.Module,
     return class_names[target_image_pred_label], target_image_pred_probs.max().item(), top3_class_predictions
 
 
-def model_prediction(image: Image):
+def model_prediction(model: torch.nn.Module, image: Image):
     """ Loads a specified PyTorch model and calls pred_image() method on a given image for that model """
 
-    model = load_model()
     top_1_pred, prediction_acc, top3_preds = pred_image(model=model, image=image)
 
     return top_1_pred, prediction_acc, top3_preds

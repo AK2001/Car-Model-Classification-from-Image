@@ -1,12 +1,25 @@
-from fastapi import FastAPI, UploadFile, HTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
-from .model.ml_model import model_prediction, get_class_names
-import PIL.Image
-
 import io
+from contextlib import asynccontextmanager
 
-app = FastAPI()
+import PIL.Image
+from fastapi import FastAPI, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
+from .model.ml_model import load_model, model_prediction, get_class_names
+
+ml_models = {}
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Load the ML model
+    ml_models['car_classifier'] = load_model()
+    yield
+    ml_models.clear()
+
+
+app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 origins = [
@@ -39,22 +52,23 @@ async def predict_image_with_model(file: UploadFile = None, demo_pred: str = "")
                prediction on a static image (demo image)
                Valid values are [demo-img-1, demo-img-2, demo-img-3].
     """
-    if file is None and demo_pred == "":
-        raise HTTPException(status_code=400,
-                            detail="Invalid request. Request should contain either an image file or "
-                                   "a parameter of a specific demo id")
+    if file is None:
+        if demo_pred == "":
+            raise HTTPException(status_code=400,
+                                detail="Invalid request. Request should contain either an image file or "
+                                       "a parameter of a specific demo id")
 
-    elif file is None and demo_pred not in ["demo-img-1", "demo-img-2", "demo-img-3"]:
-        raise HTTPException(status_code=400,
-                            detail="Invalid request. Invalid parameter value")
+        if demo_pred not in ["demo-img-1", "demo-img-2", "demo-img-3"]:
+            raise HTTPException(status_code=400,
+                                detail="Invalid request. Invalid parameter value")
 
-    if file:
-        image = PIL.Image.open(io.BytesIO(file.file.read()))
-    else:
         image = PIL.Image.open(open("app/static/images/" + demo_pred + ".jpg", 'rb'))
 
+    else:
+        image = PIL.Image.open(io.BytesIO(file.file.read()))
+
     # Get model prediction on image
-    pred, acc, top3_preds = model_prediction(image)
+    pred, acc, top3_preds = model_prediction(model=ml_models['car_classifier'], image=image)
 
     return {"modelPrediction": pred,
             "modelAccuracy": acc,
