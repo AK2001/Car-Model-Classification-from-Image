@@ -1,0 +1,288 @@
+.main-container{
+    background: var(--purple-1);
+    background: -moz-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%,  var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
+    background: -webkit-linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
+    background: linear-gradient(90deg, var(--purple-1) 5%, var(--purple-2) 26%, var(--orange-1) 50%, rgba(255,255,255,0.9) 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
+
+    padding-top: 5rem;
+}
+
+/* WELCOME SECTION */
+
+.welcome-section{
+    color:white;
+    line-height: 1.6;
+    min-height: 91.5vh;
+}
+
+.welcome-section .bg-hover-animation{
+    background: linear-gradient(53deg, transparent, var(--orange-1), var(--purple-1), var(--orange-1), transparent) no-repeat right bottom / 0 var(--bg-h);
+    transition: background-size 490ms;
+    --bg-h: 100%;
+    width: fit-content;
+}
+
+.welcome-section .bg-hover-animation:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-h);
+    background-position-x: left;
+    font-style: italic;
+}
+
+.welcome-section a{
+    color: var(--orange-1);
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.welcome-section a:link a:active, a:visited{
+    color: white;
+}
+
+.welcome-section a:hover{
+    font-style: normal;
+    text-decoration: none;
+    color: var(--orange-1);
+}
+
+.emp-text{
+    color: var(--orange-1);
+    font-style: italic;
+}
+
+.emp-text:hover{
+    font-weight: bolder;
+}
+
+.demo-images{
+    width: 100%;
+    text-align: center;
+}
+
+.demo-images .demo-image{
+    max-width: 100%;
+    height: auto;
+    margin: 10px 17px 17px;
+    border-radius: 5%;
+
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
+    -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
+    -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.85);
+}
+
+.demo-images .demo-image:hover{
+    cursor: pointer;
+
+    box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
+    -webkit-box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
+    -moz-box-shadow: 0 0 35px 0 rgba(0,0,0,0.85);
+}
+
+/*Blur all images except the one the user hovers*/
+/*.demo-images:hover .demo-image:not( :hover ){*/
+/*    filter: blur(1px);*/
+/*    -webkit-filter: blur(1px);*/
+/*}*/
+
+.heading{
+    margin: auto auto 1rem auto;
+    width: fit-content;
+    position: relative;
+}
+
+.heading:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 2px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+}
+
+.heading:hover:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.heading:hover{
+    color: var(--purple-1) !important;
+}
+
+.logo-containers{
+    text-align: center;
+    padding-top: 10vmin;
+}
+
+
+/* MODEL SECTION */
+
+.file-input-area, .file-input-area-mobile{
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 25px;
+    border: 2px dashed rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    margin: auto 0 auto auto;
+    transition: 0.2s;
+}
+
+.file-input-area:hover, .file-input-area-mobile:hover{
+    background: rgba(255, 167, 0, 0.1);
+}
+
+.file-input-area-mobile{
+    width: fit-content!important;
+    margin:auto;
+}
+
+.user-input-mobile-camera{
+    display: none;
+}
+
+.file-msg{
+    font-weight: bolder;
+}
+
+/*Message that will only appear on smaller screens (Mobile <= 767)*/
+.file-msg-mobile{
+    display: none;
+    font-weight: bolder;
+}
+
+.file-input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.file-input:focus {
+     outline: none;
+}
+
+.file-btn{
+    padding:10px;
+    margin: auto auto auto 0;
+    height: fit-content;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    transition: 50ms;
+}
+
+.file-btn:hover{
+    font-style: italic;
+}
+
+.image-container{
+    margin-top: 1rem;
+    display: flex;
+}
+
+.image-container img{
+    max-width: 100%;
+    height: auto;
+    margin:auto;
+
+    box-shadow: 0 0 40px 1px rgba(0,0,0,0.60);
+    -webkit-box-shadow: 0 0 40px 1px rgba(0,0,0,0.60);
+    -moz-box-shadow: 0 0 40px 1px rgba(0,0,0,0.60);
+}
+
+.upload-image{
+    margin-top:1rem;
+}
+
+.upload-image button{
+    margin: auto;
+}
+
+.upload-image div{
+    margin: auto;
+}
+
+.result-container{
+    font-weight: bold;
+    padding-top: 10px;
+    margin-top:0!important;
+}
+
+.result-container h4{
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.error-message{
+    padding-top:1rem;
+    text-align: center;
+    font-weight: bolder;
+    line-height: normal;
+}
+
+.error-message a:link, a:active,a:hover{
+    color: var(--purple-1);
+}
+
+@media screen and (max-width:767px){
+    .main-container{
+        background: radial-gradient(circle, var(--purple-2) 65%, var(--purple-1) 100%);
+        padding-top: 4rem;
+
+    }
+
+    .welcome-section{
+        background: -moz-radial-gradient(circle, var(--purple-2) 0%, var(--purple-1) 100%);
+        background: -webkit-radial-gradient(circle, var(--purple-2) 0%, var(--purple-1) 100%);
+        background: radial-gradient(circle, var(--purple-2) 65%, var(--purple-1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5b0fbd",endColorstr="#5c18b4",GradientType=1);
+
+        text-align: center;
+        height: auto;
+        min-height: 100% !important;
+    }
+
+    .model-section, .demonstration-section{
+        background: white;
+        color: black;
+    }
+
+}
+
+@media screen and (max-width:575px){
+    .main-container{
+        padding-top: 3rem;
+    }
+}
+
+
+/*For mobile or tablet devices that have a touchscreen
+we want to enable input by camera*/
+@media only screen and (hover: none) and (pointer: coarse){
+
+    .user-input-mobile-camera{
+        display: block;
+    }
+
+    .file-msg{
+        display: none;
+    }
+
+    .file-msg-mobile{
+        display: block;
+    }
+
+}

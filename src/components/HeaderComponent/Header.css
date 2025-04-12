@@ -1,0 +1,191 @@
+.nav-menu {
+    box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
+    -webkit-box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0 -30px 50px 20px rgba(0,0,0,0.8);
+
+
+    background: rgb(92,24,180);
+    background: -moz-linear-gradient(45deg, var(--purple-1) 5%, var(--purple-2) 25%, var(--orange-1) 48%, rgba(255,255,255,1) 48%);
+    background: -webkit-linear-gradient(45deg, var(--purple-1) 5%, var(--purple-2) 25%, var(--orange-1) 48%, rgba(255,255,255,1) 48%);
+    background: linear-gradient(45deg,var(--purple-1) 5%, var(--purple-2) 25%, var(--orange-1) 47.6%, rgba(255,255,255,1) 47.6%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffffff",GradientType=1);
+}
+
+@media screen and (max-width:1124px){
+    .nav-menu{
+        background: rgb(92,24,180);
+        background: -moz-linear-gradient(150deg, var(--purple-1) 5%, var(--purple-2) 50%, var(--orange-1) 100%);
+        background: -webkit-linear-gradient(150deg, var(--purple-1) 5%, var(--purple-2) 50%, var(--orange-1) 100%);
+        background: linear-gradient(150deg, var(--purple-1) 5%, var(--purple-2) 50%, var(--orange-1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5c18b4",endColorstr="#ffa500",GradientType=1);
+    }
+}
+
+#nav-brand{
+    color: var(--orange-1) !important;
+    font-size: 120%;
+    padding-left: 0.5rem;
+    position:relative;
+}
+
+#nav-brand:before{
+    content: "Car model classification";
+    font-weight: bold;
+    position:absolute;
+    color: rgb(255, 255, 255);
+    width:0;
+    overflow:hidden;
+    transition:all 0.6s;
+}
+
+#nav-brand:hover:before{
+    width: 100%;
+}
+
+#nav-link{
+    color: var(--orange-1)!important;
+    max-width: 8rem;
+    position: relative;
+}
+
+#nav-link:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 2px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+}
+
+#nav-link:hover:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+#nav-link:hover{
+    color: rgba(255, 255, 255, 0.87) !important;
+}
+
+/*Navbar toggler animation start*/
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    border: none;
+    height: 1.7rem;
+    padding: 0.3em;
+
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.30);
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.30);
+    -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,0.30);
+}
+
+.toggle-icon{
+    height: 100%;
+    width: 1.5em;
+    position: relative;
+}
+
+.toggle-icon > *{
+    background-color: var(--orange-1);
+    position: absolute;
+    border-radius: 50px;
+    width: 100%;
+    height: 3px;
+
+    transition: all 0.4s ease;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.80);
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.80);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.80);
+}
+
+.toggle-icon > .l1{
+    top:1px;
+}
+
+.toggle-icon > .l2{
+    transform: translateY(230%);
+}
+
+.toggle-icon > .l3{
+    bottom: 0;
+}
+
+.toggle-icon:not(.collapsed) > .l1 {
+    width: 85%;
+    transform: rotate(320deg) translateX(-10%) translateY(170%);
+}
+
+.toggle-icon:not(.collapsed) > .l2 {
+    opacity: 0;
+}
+
+.toggle-icon:not(.collapsed) > .l3 {
+    width: 85%;
+    transform: rotate(-138deg) translateX(10%) translateY(190%);
+
+
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.80);
+    -webkit-box-shadow: 0 0 2px 0 rgba(0,0,0,0.80);
+    -moz-box-shadow: 0 0 2px 0 rgba(0,0,0,0.80);
+}
+
+.navbar-toggler:not(.collapsed){
+    border-radius: 100px;
+}
+
+/*Navbar toggler animation end*/
+
+#check-github-msg{
+    display: none;
+}
+
+
+@media screen and (max-width:575px){
+    #nav-link{
+        padding-left:0.5rem;
+        text-transform: uppercase;
+        font-style: italic;
+    }
+
+    #nav-link:after, #nav-link:hover:after{
+        all: revert;
+    }
+
+    #github-link{
+        display: inline;
+    }
+
+    #git-btn-link{
+        display: inline-block;
+    }
+
+    #check-github-msg{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-right: 0.5rem;
+        font-style: italic;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.80);
+        border-radius: 12px;
+        display: inline-block;
+    }
+
+}
+
+@media screen and (max-width:400px){
+    #nav-brand{
+        font-size: 1em;
+    }
+}

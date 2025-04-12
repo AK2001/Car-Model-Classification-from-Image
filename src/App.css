@@ -1,0 +1,14 @@
+:root{
+    --purple-1:rgba(92,24,180,1);
+    --purple-2:rgba(92,24,180,0.97);
+    --orange-1: #f3a008;
+}
+
+.body-header, .body-footer{
+    /*font-family: "Lucida Bright";*/
+    font-family: Corbel, serif;
+}
+
+.body-main{
+    font-family: "Century Gothic", serif;
+}
