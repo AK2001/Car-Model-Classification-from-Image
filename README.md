@@ -102,6 +102,6 @@ This project was completed in **2023** as part of my BSc studies! Since then, I 
 with a greater love for Artificial Intelligence. In the future I plan to **re-visit** this project and change the UI, 
 add new features and options when it comes to model selection.
 
-Until then...  I hope you enjoy my other projects on AI as well!
+Until then...  I hope you enjoy my other projects as well!
 
 Any **recommendations** or **tips** are more than welcome! Eager to learn more 🤓📚.
